@@ -3,11 +3,11 @@ import Deck from "../models/deck.model.js";
 
 async function createCard(request, response) {
   try {
-    const { deckId } = request.body; // whatever it is called in the form, is how it is called here
-    const deck = await Deck.findById(deckId);
+    const { deck } = request.body; // whatever it is called in the form, is how it is called here
+    const foundDeck = await Deck.findById(deck);
     const card = await Card.create(request.body);
-    deck.cards.push(card);
-    await deck.save();
+    foundDeck.cards.push(card);
+    await foundDeck.save();
     response.status(201).json(card);
   } catch (error) {
     console.log(error);
@@ -19,7 +19,8 @@ async function createCard(request, response) {
 
 async function getOneCard(request, response) {
   try {
-    const card = await Card.findById(request.params.id).populate("deck");
+    const card = await Card.findById(request.params.id).populate('deck');
+    console.log(card.deck);
     response.status(200).json(card);
   } catch (error) {
     console.log(error);

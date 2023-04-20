@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv'
+dotenv.config()
 const dbName = process.env.DB;
 const username = process.env.ATLAS_USERNAME;
 const pw = process.env.ATLAS_PASSWORD;

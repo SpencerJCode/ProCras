@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const CardSchema = new mongoose.Schema(
   {
     deck: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Deck",
     },
     cardFront: {
@@ -17,9 +17,11 @@ const CardSchema = new mongoose.Schema(
     },
     appearances: {
       type: Number,
+      default: 0
     },
     successes: {
       type: Number,
+      default: 0
     },
   },
   { timestamps: true }

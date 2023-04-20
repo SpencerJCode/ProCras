@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const DeckSchema = new mongoose.Schema(
   {
     stack: {
-      type: mongoose.SchemaTypes.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Stack",
     },
     deckName: {
@@ -10,7 +10,7 @@ const DeckSchema = new mongoose.Schema(
       required: [true, "Please provide a name for this deck"],
       maxLength: [25, "Stack names have a max of 25 characters"],
     },
-    cards: [{type: mongoose.SchemaTypes.ObjectId, ref: "Card"}]
+    cards: [{type: mongoose.Schema.Types.ObjectId, ref: "Card"}]
   },
   { timestamps: true }
 );
