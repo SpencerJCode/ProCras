@@ -1,53 +1,30 @@
-const Card = require('../models/card.model');
+import Card from "../models/card.model.js";
+import Deck from "../models/deck.model.js";
 
-module.exports.findAllCards = (req, res) => {
-    Card.find()
-        .then((allCards) => {
-            res.json(allCards)
-        })
-        .catch((err) => {
-            res.json(err)
-        });
+async function createCard(request, response) {
+  try {
+    const { deckId } = request.body; // whatever it is called in the form, is how it is called here
+    const deck = await Deck.findById(deckId);
+    const card = await Card.create(request.body);
+    deck.cards.push(card);
+    await deck.save();
+    response.status(201).json(card);
+  } catch (error) {
+    console.log(error);
+    response.status(400).json(error);
+  }
 }
- 
-module.exports.findOneSingleCard = (req, res) => {
-    Card.findOne({ _id: req.params.id })
-        .then(oneSingleCard => {
-            res.json(oneSingleCard)
-        })
-        .catch((err) => {
-            res.json(err)
-        });}
- 
-module.exports.createNewCard = (req, res) => {
-    Card.create(req.body)
-        .then(newlyCreatedCard => {
-            res.json(newlyCreatedCard)
-        })
-        .catch((err) => {
-            res.json(err)
-        });}
- 
-module.exports.updateExistingCard = (req, res) => {
-    Card.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true, runValidators: true }
-    )
-        .then(updatedCard => {
-            console.log(updatedCard)            
-            res.json(updatedCard)
-            
-        })
-        .catch((err) => {
-            res.json(err)
-        });}
- 
-module.exports.deleteAnExistingCard = (req, res) => {
-    Card.deleteOne({ _id: req.params.id })
-        .then(result => {
-            res.json(result)
-        })
-        .catch((err) => {
-            res.json(err)
-        });}
+
+//in form, send deckId, located inside of request.body
+
+async function getOneCard(request, response) {
+  try {
+    const card = await Card.findById(request.params.id).populate("deck");
+    response.status(200).json(card);
+  } catch (error) {
+    console.log(error);
+    response.status(400).json(error);
+  }
+}
+
+export { createCard, getOneCard };

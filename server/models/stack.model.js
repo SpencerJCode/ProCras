@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const StackSchema = new mongoose.Schema(
-{
+  {
     stackName: {
-        type: String,
-        required: [true, "Please name your stack"],
-        maxLength: [25, "Stack names have a max of 25 characters"]
+      type: String,
+      required: [true, "Please name your stack"],
+      maxLength: [25, "Stack names have a max of 25 characters"],
     },
-    decks: {
-        type: Array
-    }
-}, { timestamps: true });
-const Stack = mongoose.model('Stack', StackSchema);
-module.exports= Stack
+    decks: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Deck" }],
+  },
+  { timestamps: true }
+);
+const Stack = mongoose.model("Stack", StackSchema);
+export default Stack;

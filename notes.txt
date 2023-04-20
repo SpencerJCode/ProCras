@@ -1,0 +1,27 @@
+Got it or not button, percenatge of knowledge
+- number of times its been shown and number of times it's been identified
+
+Session, all the cards whose success rate is beneath 100%
+
+The deck has a cards key value, and the value is another object
+
+Upon creating a card, can't create a card without a deck 
+
+stack would have an array of ids od decks
+
+
+decks or stacks that are global 
+
+We both push and then we pull at the end 
+
+
+guy sitting on a paper airplane, silhouette, feetbup and relaxed, looping logo of guy procrastinating
+
+Framer motion library
+
+two ways of having one to many:
+denormalize, or normalize with mongodb
+Normalize: referencing with child to parent, no referecnes with parent. Array in the parent of
+Denormalize: one to few, embed documents into each other
+
+one to few, one to many, one to a lot
