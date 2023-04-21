@@ -17,3 +17,6 @@ We both push and then we pull at the end
 
 guy sitting on a paper airplane, silhouette, feetbup and relaxed, looping logo of guy procrastinating
 
+git-school.github for practice
+
+git log --oneline allows us to see minimized logs
