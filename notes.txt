@@ -25,3 +25,16 @@ Normalize: referencing with child to parent, no referecnes with parent. Array in
 Denormalize: one to few, embed documents into each other
 
 one to few, one to many, one to a lot
+
+
+----
+
+Git branches and git merges
+Stable versions in main, when adding a feature add to a branch
+Make branch: git branch 'add-navbar'
+Switch branch: git switch main
+List branches: git branch
+
+When stable, to merge, go to main branch and merge. Merge navbar into main
+1. Go into branch you're merging into
+2. git merge add-navbar
