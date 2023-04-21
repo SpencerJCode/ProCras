@@ -12,6 +12,10 @@ async function createDeck(request, response) {
     response.status(400).json(error);
   }
 }
+
+//Get all decks function? For the global feature, and if a stack is not required
+
+
 //Gets a single deck
 async function getOneDeck(request, response) {
   try {
