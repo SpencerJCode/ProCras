@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import dbConnect from "./config/mongoose.config.js";
 import deckRouter from "./routes/deck.routes.js";
 import cardRouter from "./routes/card.routes.js";
+import stackRouter from "./routes/stack.routes.js"
 
 const app = express();
 dotenv.config();
@@ -11,6 +12,7 @@ dotenv.config();
 app.use(express.json(), cors());
 app.use("/api/decks", deckRouter);
 app.use("/api/cards", cardRouter);
+app.use("/api/stacks", stackRouter);
 
 async function startServer() {
   try {

@@ -4,6 +4,7 @@ import {
     getOneDeck, 
     updateDeck, 
     deleteDeck, 
+    getAllStackDecks,
     deleteManyByStack 
 } from "../controllers/deck.controller.js";
 

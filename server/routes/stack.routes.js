@@ -9,10 +9,11 @@ import {
 
 const router = Router();
 
+router.route("/").get(getAllStacks)
 router.route("/").post(createStack);
 router.route("/:id").get(getOneStack);
 router.route("/:id").put(updateStack);
 router.route("/:id").delete(deleteStack);
-route.route("/").get(getAllStacks)
+
 
 export default router;

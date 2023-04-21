@@ -1,6 +1,6 @@
-import Card from "..models/card.model.js";
+import Card from "../models/card.model.js";
 import Deck from "../models/deck.model.js";
-import "..controllers/card.controller.js";
+import "./card.controller.js"
 
 //Creates a new deck
 async function createDeck(request, response) {

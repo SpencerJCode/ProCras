@@ -1,8 +1,8 @@
-import Card from "..models/card.model.js";
+import Card from "../models/card.model.js";
 import Deck from "../models/deck.model.js";
-import Stack from "..models/stack.model.js";
-import "..controllers/deck.controller.js";
-import "..controllers/card.controller.js";
+import Stack from "../models/stack.model.js"
+import "../controllers/deck.controller.js"
+import "../controllers/card.controller.js"
 
 //Creates a new stack
 async function createStack(request, response) {
