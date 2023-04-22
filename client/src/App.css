@@ -1,0 +1,94 @@
+@import url('https://fonts.cdnfonts.com/css/galliardblditc');
+@import url('https://fonts.cdnfonts.com/css/chillax');
+
+body {
+  background-color: rgb(204, 204, 204);
+}
+
+.navbar-body {
+  background-color: rgba(0, 33, 67, 0.6);
+  padding: 10px;
+  box-shadow: 0px 2px 3px rgba(0,0,0,.2);
+}
+
+.plane-logo {
+  width: 50px;
+}
+
+.site-title {
+  /* font-family: 'GalliardBldITC', sans-serif; */
+  font-family: 'Chillax', sans-serif;
+}
+
+.links a {
+  text-decoration: none;
+  color: #343a40;
+}
+
+/* Card Hover Effect on Links */
+.hover-card-link {
+  background-size: cover;
+  padding: 7px 10px;
+  position: relative;
+  color: #343a40;
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hover-card-link::before {
+  content: "";
+  background-color: #f8f9fa;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 6px;
+  filter: drop-shadow(-2px 2px 3px rgba(0,0,0,.2));
+}
+
+.hover-card-link:hover .content {
+  transform: translateZ(12px);
+}
+
+.hover-card-content {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Test Card on Home */
+.hover-card {
+  background-size: cover;
+  padding: 7px 10px;
+  position: relative;
+  color: #343a40;
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hover-card::before {
+  content: "";
+  background-color: #f8f9fa;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 6px;
+  filter: drop-shadow(-2px 2px 3px rgba(0,0,0,.2));
+}
+
+.hover-card:hover .content {
+  transform: translateZ(12px);
+}
+
+.card-test {
+  width: 400px;
+}
+
+.test-card {
+  padding: 90px 70px;
+}

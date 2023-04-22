@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+.hover-card {
+  background-color: #f8f9fa;
+  background-size: cover;
+  padding: 7px 10px;
+  position: relative;
+  color: #343a40;
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hover-card::before {
+  content: "";
+  background-color: #f8f9fa;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hover-card:hover .content {
+  transform: translateZ(12px);
+}
+
+.hover-card-content {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Demo only */
+.container {
+  margin-top: 100px;
+}
