@@ -1,0 +1,44 @@
+.scene {
+  width: 260px;
+  height: 200px;
+  border: 1px solid #CCC;
+  margin: 40px 0;
+  perspective: 600px;
+  margin: auto;
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-card.is-flipped {
+  transform: rotateX(180deg);
+}
+
+.flip-card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  line-height: 200px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card__face--front {
+  background: red;
+}
+
+.flip-card__face--back {
+  background: blue;
+  /* transform: scale(-1, -1); */
+  transform: rotateX(180deg);
+}

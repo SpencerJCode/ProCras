@@ -37,21 +37,21 @@ const Navbar = (props) => {
           <div className="links d-flex col-5 justify-content-around holder">
             <Link>
               <div className="hover-card-link">
-                <div className="hover-card-content">
+                <div className="hover-card-link-content">
                   <h4>Browse</h4>
                 </div>
               </div>
             </Link>
             <Link>
               <div className="hover-card-link">
-                <div className="hover-card-content">
+                <div className="hover-card-link-content">
                   <h4>MyCards</h4>
                 </div>
               </div>
             </Link>
             <Link>
               <div className="hover-card-link">
-                <div className="hover-card-content">
+                <div className="hover-card-link-content">
                   <h4>Study</h4>
                 </div>
               </div>

@@ -51,9 +51,8 @@ class Hover3D
 }
 
 let hoverCard = new Hover3D(".hover-card");
-let hoverEffect = new Hover3D(".hover-effect");
-let hoverLink = new Hover3D(".hover-card-link");
-// let hoverContent = new Hover3D(".hover-card-content")
 
-hoverLink.xOffset = 25;
-hoverLink.yOffset = 25;
+let flipCard = document.querySelector('.flip-card');
+flipCard.addEventListener( 'click', function() {
+  flipCard.classList.toggle('is-flipped');
+});

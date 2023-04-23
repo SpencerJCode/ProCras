@@ -1,5 +1,5 @@
-@import url('https://fonts.cdnfonts.com/css/galliardblditc');
-@import url('https://fonts.cdnfonts.com/css/chillax');
+@import url("https://fonts.cdnfonts.com/css/galliardblditc");
+@import url("https://fonts.cdnfonts.com/css/chillax");
 
 body {
   background-color: rgb(204, 204, 204);
@@ -8,7 +8,7 @@ body {
 .navbar-body {
   background-color: rgba(0, 33, 67, 0.6);
   padding: 10px;
-  box-shadow: 0px 2px 3px rgba(0,0,0,.2);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .plane-logo {
@@ -17,7 +17,7 @@ body {
 
 .site-title {
   /* font-family: 'GalliardBldITC', sans-serif; */
-  font-family: 'Chillax', sans-serif;
+  font-family: "Chillax", sans-serif;
 }
 
 .links a {
@@ -45,17 +45,17 @@ body {
   top: 0;
   bottom: 0;
   border-radius: 6px;
-  filter: drop-shadow(-2px 2px 3px rgba(0,0,0,.2));
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2));
 }
 
-.hover-card-link:hover .content {
-  transform: translateZ(12px);
+.hover-card-link-content {
+  position: relative;
+  transform: scale(0.9) translateZ(10px);
 }
 
 .hover-card-content {
   position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
+  transform: scale(0.9) translateZ(30px);
 }
 
 /* Test Card on Home */
@@ -63,7 +63,7 @@ body {
   background-size: cover;
   padding: 7px 10px;
   position: relative;
-  color: #343a40;
+  color: #f8f9fa;
   transition: transform 0.1s ease;
   transform-style: preserve-3d;
   will-change: transform;
@@ -72,13 +72,15 @@ body {
 .hover-card::before {
   content: "";
   background-color: #f8f9fa;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   border-radius: 6px;
-  filter: drop-shadow(-2px 2px 3px rgba(0,0,0,.2));
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2));
 }
 
 .hover-card:hover .content {
@@ -86,9 +88,62 @@ body {
 }
 
 .card-test {
-  width: 400px;
+  width: 450px;
 }
 
 .test-card {
-  padding: 90px 70px;
+  padding: 100px 70px;
+}
+
+/* Flipping animation */
+.scene {
+  width: 450px;
+  height: 250px;
+  border: 1px solid #CCC;
+  perspective: 600px;
+  margin: auto;
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-card.is-flipped {
+  transform: rotateX(180deg);
+}
+
+.flip-card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  line-height: 200px;
+  text-align: center;
+  font-weight: bold;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2));
+  padding: 20px;
+  display: grid;
+  align-content: center;
+}
+
+.flip-card__face--front {
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+}
+
+.flip-card__face h1 {
+  position: relative;
+  transform: scale(0.9) translateZ(100px);
+}
+
+.flip-card__face--back {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  transform: rotateX(180deg);
 }
