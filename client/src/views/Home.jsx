@@ -1,19 +1,29 @@
-import { useState } from "react";
+// import { useState } from "react";
+import Hover3D from "../js/hover3D";
 
 const Home = (props) => {
+  let hoverEffect = new Hover3D(".hover-effect");
+
+  const flipCard = (e) => {
+    e.target.classList.toggle("is-flipped");
+    console.log(e);
+  };
+
   return (
-    <div className="">
-      <div className="card-test m-auto mt-5">
-        <div className="hover-card test-card">
+    <div>
+      <h4 className="text-center mt-2">Stack/Deck</h4>
+      <div className="m-auto mt-1">
+        <div className={`m-auto hover-card ${hoverEffect}`}>
           <div className="hover-card-content">
-          <h1>Hover over me!</h1>
+            <h1 className="deck-stack-title">Hover over me!</h1>
           </div>
         </div>
       </div>
 
-      <div className="mt-5">
-        <div className="scene scene--flip-card hover-effect">
-          <div className="flip-card">
+      <h4 className="text-center mt-3">Card</h4>
+      <div className="mt-1">
+        <div className={`scene scene--flip-card ${hoverEffect}`}>
+          <div className="flip-card" onClick={(e) => flipCard(e)}>
             <div className="flip-card__face flip-card__face--front">
               <h1>Hover over me and click me!</h1>
               <p></p>

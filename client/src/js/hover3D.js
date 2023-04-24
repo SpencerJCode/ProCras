@@ -50,10 +50,12 @@ class Hover3D
     }
 }
 
-let hoverCard = new Hover3D(".hover-card");
-let hoverEffect = new Hover3D(".hover-effect");
-let hoverLink = new Hover3D(".hover-card-link");
+// let hoverCard = new Hover3D(".hover-card");
+// let hoverEffect = new Hover3D(".hover-effect");
+// let hoverLink = new Hover3D(".hover-card-link");
 // let hoverContent = new Hover3D(".hover-card-content")
 
-hoverLink.xOffset = 25;
-hoverLink.yOffset = 25;
+// hoverLink.xOffset = 25;
+// hoverLink.yOffset = 25;
+
+export default Hover3D;
