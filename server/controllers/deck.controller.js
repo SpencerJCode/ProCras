@@ -36,7 +36,7 @@ async function getOneDeck(request, response) {
 //Gets all decks in a stack
 async function getAllStackDecks(request, response) {
   try {
-    const decks = await Deck.find(request.params.stack)
+    const decks = await Deck.find({stack: request.params.stack})
     response.status(200).json(decks);
   } catch (error) {
     console.log(error);

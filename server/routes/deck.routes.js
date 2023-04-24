@@ -11,11 +11,11 @@ import {
 
 const router = Router();
 
+router.route("/stack/:stack").get(getAllStackDecks)
 router.route("/").post(createDeck);
 router.route("/:id").get(getOneDeck);
 router.route("/:id").put(updateDeck);
 router.route("/:id").delete(deleteDeck);
-router.route("/:stack").get(getAllStackDecks)
 router.route("/").get(getAllDecks)
 
 export default router;
