@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import Hover3D from "../js/hover3D";
+import Hover3D from "../client/src/assets/js/hover3D";
 
 const Home = (props) => {
   
@@ -11,15 +11,14 @@ const Home = (props) => {
 
   const flipCard = (e) => {
     e.target.classList.toggle("is-flipped");
-    console.log(e);
   };
 
   return (
     <div>
       <h4 className="text-center mt-2">Stack/Deck</h4>
       <div className="m-auto mt-1">
-        <div className={`m-auto hover-card hover-effect`}>
-          <div className="hover-card-content">
+        <div className={`m-auto hover-deck-stack hover-effect`}>
+          <div className="hover-deck-stack-content">
             <h1 className="deck-stack-title">Hover over me!</h1>
           </div>
         </div>

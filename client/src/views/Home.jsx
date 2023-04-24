@@ -1,4 +1,4 @@
-import Hover3D from "../js/hover3D";
+import Hover3D from "../assets/js/hover3D";
 
 const Home = (props) => {
   const createHoverEffect = () => {

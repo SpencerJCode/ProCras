@@ -11,12 +11,17 @@ body {
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
+.navbar-content a {
+  text-decoration: none;
+}
+
 .plane-logo {
   width: 50px;
 }
 
 .site-title {
   font-family: "Chillax", sans-serif;
+  color: #f8f9fa;
 }
 
 .links a {
@@ -87,7 +92,7 @@ body {
   transform: rotateX(180deg);
 }
 
-/* Card Hover Effect on Links */
+/*Hover Effect on Links */
 .hover-card-link {
   background-size: cover;
   padding: 7px 10px;
@@ -115,13 +120,8 @@ body {
   transform: scale(0.9) translateZ(10px);
 }
 
-.hover-card-content {
-  position: relative;
-  transform: scale(0.9) translateZ(30px);
-}
-
 /* Test Card on Home */
-.test-card {
+.hover-deck-stack {
   background-size: cover;
   width: 450px;
   height: 250px;
@@ -133,7 +133,7 @@ body {
   text-align: center;
 }
 
-.test-card::before {
+.hover-deck-stack::before {
   content: "";
   background-color: #f8f9fa;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
@@ -159,6 +159,11 @@ body {
   z-index: 5;
   display: grid;
   align-content: center;
+}
+
+.hover-deck-stack-content {
+  position: relative;
+  transform: scale(0.9) translateZ(30px);
 }
 
 /* Flipping animation */

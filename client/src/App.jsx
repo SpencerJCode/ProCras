@@ -1,13 +1,14 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
 import { Route, Routes, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./views/Home";
-import { useEffect } from "react";
+import MyCards from "./views/MyCards";
+import Browse from "./views/Browse";
+import Study from "./views/Study";
+
+
 
 function App() {
-
-  useEffect(() => {});
-
   return (
     <>
       <div>
@@ -15,6 +16,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/Browse" element={<Browse />} />
+          <Route path="/MyCards" element={<MyCards />} />
+          <Route path="/Study" element={<Study />} />
         </Routes>
       </div>
     </>
