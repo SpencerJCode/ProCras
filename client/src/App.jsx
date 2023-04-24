@@ -1,6 +1,6 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
 import { Route, Routes, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./views/Home";
 import MyCards from "./views/MyCards";
 import Browse from "./views/Browse";
@@ -8,9 +8,6 @@ import Study from "./views/Study";
 import { useEffect } from "react";
 
 function App() {
-
-  useEffect(() => {});
-
   return (
     <>
       <div>

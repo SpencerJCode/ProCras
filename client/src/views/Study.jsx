@@ -1,3 +1,10 @@
+const Study = () => {
+  return(
+    <div>
+      <h1>Study Test</h1>
+    </div>
+  )
+}
 
 const Study = (props) => {
   
@@ -11,3 +18,4 @@ const Study = (props) => {
   
   export default Study;
   
+export default Study;
