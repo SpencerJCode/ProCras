@@ -50,7 +50,7 @@ async function updateStack(request, response) {
   //Deletes a stack
 async function deleteStack(request, response) {
     try {
-      const stack = await Stack.deleteOne(request.params.id);
+      const stack = await Stack.deleteOne({_id: request.params.id});
       response.status(200).json(stack);
     } catch (error) {
       console.log(error);

@@ -50,7 +50,7 @@ async function updateCard(request, response) {
 //Deletes a card.
 async function deleteCard(request, response) {
   try {
-    const card = await Card.deleteOne(request.params.id);
+    const card = await Card.deleteOne({_id: request.params.id});
     response.status(200).json(card);
   } catch (error) {
     console.log(error);
@@ -61,7 +61,7 @@ async function deleteCard(request, response) {
 //Deletes all cards in a deck.
 async function deleteManyByDeck(request, response) {
   try {
-    const cards = await Card.deleteMany(request.body);
+    const cards = await Card.deleteMany(request.params.deck);
     response.status(200).json(cards);
   } catch (error) {
     console.log(error);

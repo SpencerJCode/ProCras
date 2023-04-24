@@ -5,6 +5,7 @@ import {
     updateDeck, 
     deleteDeck, 
     getAllStackDecks,
+    getAllDecks,
     deleteManyByStack 
 } from "../controllers/deck.controller.js";
 
@@ -15,5 +16,6 @@ router.route("/:id").get(getOneDeck);
 router.route("/:id").put(updateDeck);
 router.route("/:id").delete(deleteDeck);
 router.route("/:stack").get(getAllStackDecks)
+router.route("/").get(getAllDecks)
 
 export default router;

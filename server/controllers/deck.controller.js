@@ -1,6 +1,5 @@
 import Card from "../models/card.model.js";
 import Deck from "../models/deck.model.js";
-import "./card.controller.js"
 
 //Creates a new deck
 async function createDeck(request, response) {
@@ -14,7 +13,15 @@ async function createDeck(request, response) {
 }
 
 //Get all decks function? For the global feature, and if a stack is not required
-
+async function getAllDecks(request, response) {
+  try {
+    const decks = await Deck.find()
+    response.status(200).json(decks);
+  } catch (error) {
+    console.log(error);
+    response.status(400).json(error);
+  }
+}
 
 //Gets a single deck
 async function getOneDeck(request, response) {
@@ -39,8 +46,10 @@ async function getAllStackDecks(request, response) {
 
 //Updates a single deck
 async function updateDeck(request, response) {
+  // console.log("update deck test");
   try {
-    const deck = await Deck.findOneAndUpdate(request.params.id);
+    const deck = await Deck.findOneAndUpdate({_id: request.params.id},request.body);
+    console.log(deck);
     response.status(200).json(deck);
   } catch (error) {
     console.log(error);
@@ -50,8 +59,9 @@ async function updateDeck(request, response) {
 //Deletes a deck.
 async function deleteDeck(request, response) {
   try {
-    const deck = await Deck.deleteOne(request.params.id);
-    const cards = await Card.deleteManyByDeck(request.params.deck)
+    // const cards = await Card.deleteManyByDeck({_id: request.params.deck});
+    console.log("test");
+    const deck = await Deck.deleteOne({_id: request.params.id});
     response.status(200).json(deck);
   } catch (error) {
     console.log(error);
@@ -70,4 +80,4 @@ async function deleteManyByStack(request, response) {
   }
 }
 
-export { createDeck, getOneDeck, updateDeck, deleteDeck, getAllStackDecks, deleteManyByStack };
+export { createDeck, getOneDeck, updateDeck, deleteDeck, getAllStackDecks, deleteManyByStack, getAllDecks };
