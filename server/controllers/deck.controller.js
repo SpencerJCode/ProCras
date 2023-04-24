@@ -62,7 +62,7 @@ async function deleteDeck(request, response) {
 //Deletes all decks in a stack.
 async function deleteManyByStack(request, response) {
   try {
-    const decks = await Deck.deleteMany(request.body);
+    const decks = await Deck.deleteMany(request.body.stack);
     response.status(200).json(decks);
   } catch (error) {
     console.log(error);

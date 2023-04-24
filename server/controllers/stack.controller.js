@@ -51,8 +51,6 @@ async function updateStack(request, response) {
 async function deleteStack(request, response) {
     try {
       const stack = await Stack.deleteOne(request.params.id);
-      const decks = await Deck.deleteManyByStack(request.params.stack)
-      const cards = await Card.deleteManyByDeck(request.params.deck)
       response.status(200).json(stack);
     } catch (error) {
       console.log(error);
