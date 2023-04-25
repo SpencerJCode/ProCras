@@ -53,7 +53,7 @@ const Decks  = (props) =>{
                                 <div className = "hover-deck-stack-content">
                                     <div className="deck-stack-title">
                                         <h1>{deck.deckName}</h1>
-                                        <h4>{`Success Rate: ${successRate}`}</h4>
+                                        <h5>{`Success Rate: ${successRate}`}</h5>
                                     </div>
                                 </div>
                             </div>
