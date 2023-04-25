@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Decks  = (props) =>{
-    const {filteredDecks, setFilteredDecks, cards} = props 
+    const {filteredDecks, setFilteredDecks, cards, setShowEditDeck, setDeckId} = props 
     const [filteredDecksLoaded, setFilteredDecksLoaded]  = useState(false);
 
       useEffect(() => {
@@ -21,6 +21,11 @@ const Decks  = (props) =>{
         setFilteredDecksLoaded(true);
       }, [filteredDecksLoaded])
 
+    const handleEditDeck = (deckId) => {
+        setShowEditDeck(true)
+        setDeckId(deckId)
+    }
+
     return ( filteredDecksLoaded &&
         <div className="col-11 d-flex align-items-center mt-3 m-auto gap-5">
             {filteredDecks.map((deck, i) => {
@@ -30,7 +35,7 @@ const Decks  = (props) =>{
                 }
                 if (appearancesSum === 0 || deck.cards.length === 0) {
                     return (
-                        <div className="d-flex flex-column align-items-center m-auto">
+                        <div className="d-flex flex-column align-items-center m-auto" key={i}>
                             <div className= "deck-stack m-auto">
                                 <div>
                                 <h1>{deck.deckName}</h1>
@@ -39,7 +44,7 @@ const Decks  = (props) =>{
                             </div>
                             <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
                                     <Link>
-                                    <button className="btn btn-primary" >Edit</button>
+                                    <button className="btn btn-primary" onClick={() => handleEditDeck(deck._id)} >Edit</button>
                                     </Link>
                                     <Link>
                                     <button className="btn btn-primary" >Add Cards</button>
@@ -57,7 +62,7 @@ const Decks  = (props) =>{
                     }  
                     let successRate = Math.floor((successesSum / appearancesSum)*100)
                     return (
-                        <div className="d-flex flex-column align-items-center m-auto">
+                        <div className="d-flex flex-column align-items-center m-auto" key={i}>
                             <div className= "deck-stack m-auto">
                                 <div>
                                 <h1>{deck.deckName}</h1>
@@ -66,7 +71,7 @@ const Decks  = (props) =>{
                             </div>
                             <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
                                     <Link>
-                                    <button className="btn btn-primary" >Edit</button>
+                                    <button className="btn btn-primary" onClick={() => handleEditDeck(deck._id)}>Edit</button>
                                     </Link>
                                     <Link>
                                     <button className="btn btn-primary" >Add Cards</button>

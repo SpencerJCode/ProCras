@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId }) => {
+const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId, setDecksLoaded }) => {
   const [deckName, setDeckName] = useState("");
 
   const handleClose = () => {

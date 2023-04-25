@@ -12,7 +12,6 @@ const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId, 
   const handleShowEdit = (stackId) => {
     setShowEditStack(true)
     setStackId(stackId)
-    // console.log(stackId);
   }
 
     return (
@@ -20,8 +19,8 @@ const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId, 
             {stacks.map((stack, i) => {
                 if (!(stack.studySession)) {
                 return (
-                <div className=" d-flex flex-column align-items-center m-auto">
-                    <div onClick = {(e) => {highlightedStack(stack._id) }} className= "deck-stack hover-effect">
+                <div className=" d-flex flex-column align-items-center m-auto" key={i}>
+                    <div onClick = {(e) => {highlightedStack(stack._id) }} className= "deck-stack hover-effect" >
                         <div>
                             <h1>{stack.stackName}</h1>
                         </div>
