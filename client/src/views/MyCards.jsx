@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react"
 import axios from "axios"
 import Decks from "../components/decks"
 import Stacks from "../components/stacks"
+import { Link } from "react-router-dom"
 
 const MyCards = (props) => {
   const [stacks, setStacks] = useState([]);
@@ -42,9 +43,10 @@ const MyCards = (props) => {
     return (
       <div>
          <div className = "stackContainer">
-            Stack Row (Make new stack button)
-            Clicking on a Stack enables edit/delete
             {/* study button? */}
+            <Link>
+              <button className="btn btn-primary mt-3" >Add stack</button>
+            </Link>
             {stacksLoaded && <Stacks stacks = {stacks} highlightedStack = {highlightedStack}/>}
           </div>
           <div className = "deckContainer">
