@@ -173,6 +173,10 @@ body {
   transform: scale(0.9) translateZ(20px);
 }
 
+.hidden {
+  visibility: hidden !important;
+}
+
 /* Flipping animation */
 .scene {
   width: 450px;

@@ -9,6 +9,10 @@ const createHoverEffect = () => {
 
   setTimeout(createHoverEffect, 1000);
 
+  const showButtons = (id) => {
+    document.getElementById(`stack-deck-buttons-${id}`).classList.toggle("hidden")
+  }
+
 // creating a new stacks should also set that stack as the highlighted stack
     return (
         <div className="d-flex align-items-center gap-5 mt-3 col-11 m-auto">
@@ -16,12 +20,12 @@ const createHoverEffect = () => {
                 if (!(stack.studySession)) {
                 return (
                 <div className=" d-flex flex-column align-items-center col-3 m-auto">
-                    <div onClick = {(e) => {highlightedStack(stack._id)}} className= "hover-deck-stack hover-effect">
+                    <div onClick = {(e) => {highlightedStack(stack._id); showButtons(stack._id) }} className= "hover-deck-stack hover-effect">
                         <div className = "hover-deck-stack-content">
                             <h1 className="deck-stack-title">{stack.stackName}</h1>
                         </div>
                     </div>
-                    <div className="stack-deck-buttons d-flex gap-3 mt-3">
+                    <div id={`stack-deck-buttons-${stack._id}`} className="stack-deck-buttons d-flex gap-3 mt-3 hidden">
                             <Link>
                             <button className="btn btn-primary" >Edit</button>
                             </Link>
