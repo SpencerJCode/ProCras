@@ -1,16 +1,9 @@
-import { useEffect, useState } from "react";
-import Hover3D from "../assets/js/hover3D";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Decks  = (props) =>{
     const {filteredDecks, setFilteredDecks, cards} = props 
     const [filteredDecksLoaded, setFilteredDecksLoaded]  = useState(false);
-
-    const createHoverEffect = () => {
-        let hoverEffect = new Hover3D(".hover-effect");
-      };
-    
-      setTimeout(createHoverEffect, 1000);
 
       useEffect(() => {
         let filteredCardsArr = []
@@ -25,7 +18,6 @@ const Decks  = (props) =>{
             filteredCardsArr=[]
         }
         setFilteredDecks([...nonstateFilteredDecks])
-        // console.log(nonstateFilteredDecks);
         setFilteredDecksLoaded(true);
       }, [filteredDecksLoaded])
 
@@ -39,12 +31,10 @@ const Decks  = (props) =>{
                 if (appearancesSum === 0 || deck.cards.length === 0) {
                     return (
                         <div className="d-flex flex-column align-items-center m-auto">
-                            <div className= "hover-deck-stack m-auto hover-effect">
-                                <div className = "hover-deck-stack-content">
-                                    <div className="deck-stack-title">
-                                        <h1>{deck.deckName}</h1>
+                            <div className= "deck-stack m-auto">
+                                <div>
+                                <h1>{deck.deckName}</h1>
                                         <h5>Not Yet Studied</h5>
-                                    </div>
                                 </div>
                             </div>
                             <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
@@ -68,12 +58,10 @@ const Decks  = (props) =>{
                     let successRate = Math.floor((successesSum / appearancesSum)*100)
                     return (
                         <div className="d-flex flex-column align-items-center m-auto">
-                            <div className= "hover-deck-stack m-auto hover-effect">
-                                <div className = "hover-deck-stack-content">
-                                    <div className="deck-stack-title">
-                                        <h1>{deck.deckName}</h1>
-                                        <h5>{`Success Rate: ${successRate}%`}</h5>
-                                    </div>
+                            <div className= "deck-stack m-auto">
+                                <div>
+                                <h1>{deck.deckName}</h1>
+                                    <h5>{`Success Rate: ${successRate}%`}</h5>
                                 </div>
                             </div>
                             <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">

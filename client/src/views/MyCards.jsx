@@ -59,7 +59,7 @@ const MyCards = (props) => {
         <Link>
           <button className="btn btn-primary mt-3" onClick={handleOpenStackModal}>Add stack</button>
         </Link>
-         <div className = "stackContainer">
+         <div className = "stackContainer col-10">
             {/* study button? */}
             {stacksLoaded && <Stacks stacks = {stacks} highlightedStack = {highlightedStack} setStacksLoaded={setStacksLoaded} setShowEditStack={setShowEditStack} setStackId={setStackId} />}
           </div>

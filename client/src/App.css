@@ -5,6 +5,30 @@ body {
   background-color: rgb(204, 204, 204);
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .navbar-body {
   background-color: rgba(0, 33, 67, 0.6);
   padding: 10px;
@@ -123,54 +147,25 @@ body {
 }
 
 /* Test Card on Home */
-.hover-deck-stack {
-  background-size: cover;
+.deck-stack {
   width: 300px;
   height: 150px;
-  position: relative;
   color: #343a40;
-  transition: transform 0.1s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
   text-align: center;
-}
-
-.hover-deck-stack:hover {
-  cursor: pointer;
-}
-
-.hover-deck-stack::before {
-  content: "";
-  background-color: #f8f9fa;
-  background-image: url("https://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg");
-  background-size: 100%;
-  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
-    grayscale();
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   border-radius: 6px;
   box-shadow: -1px 1px 0 #c5c5c5, -2px 2px 0 rgba(0, 0, 0, 0.2),
     -3px 3px 0 #c5c5c5, -4px 4px 0 rgba(0, 0, 0, 0.2), -5px 5px 0 #c5c5c5,
     -6px 6px 0 rgba(0, 0, 0, 0.2), -7px 7px 0 #c5c5c5,
     -8px 8px 0 rgba(0, 0, 0, 0.2), -9px 9px 0 #c5c5c5,
     -10px 10px 0 rgba(0, 0, 0, 0.2);
-}
-
-.deck-stack-title {
-  width: 300px;
-  height: 150px;
-  position: relative;
-  z-index: 5;
-  display: grid;
-  align-content: center;
-}
-
-.hover-deck-stack-content {
-  position: relative;
-  transform: scale(0.9) translateZ(20px);
+  background-image: url("https://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg");
+  background-size: 100%;
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
+    grayscale();
+    display: grid;
+    align-content: center;
+    cursor: pointer;
+    margin: 0px 20px;
 }
 
 .hidden {
@@ -237,16 +232,19 @@ body {
 .stackContainer {
   margin: 0 auto;
   text-align: center;
-  margin-top: 40px;
-  height: 300px;
+  padding: 20px;
   background-color: rgb(181, 197, 255);
   overflow-x: scroll;
+  border-radius: 10px;
+  box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 .deckContainer {
-  text-align: center;
   margin: 0 auto;
-  margin-top: 40px;
-  height: 300px;
+  text-align: center;
+  padding: 20px;
   background-color: rgb(154, 255, 205);
+  overflow-x: scroll;
+  border-radius: 10px;
 }
