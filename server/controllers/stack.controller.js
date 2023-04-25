@@ -39,7 +39,9 @@ async function getOneStack(request, response) {
   //Updates a single stack
 async function updateStack(request, response) {
     try {
-      const stack = await Stack.findOneAndUpdate(request.params.id);
+      const stack = await Stack.findOneAndUpdate({_id: request.params.id}, request.body, {new:true});
+      console.log(request.body)
+      console.log(request.params.id)
       response.status(200).json(stack);
     } catch (error) {
       console.log(error);

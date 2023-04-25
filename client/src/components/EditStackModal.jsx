@@ -16,7 +16,6 @@ const EditStackModal = ({ showEditStack, setShowEditStack, setStacksLoaded, stac
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(stackId);
     axios
       .put("http://localhost:8000/api/stacks/" + stackId, {
         stackName,
