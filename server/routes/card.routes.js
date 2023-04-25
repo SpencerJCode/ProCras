@@ -5,12 +5,14 @@ import {
     updateCard, 
     deleteCard, 
     getAllDeckCards,
-    deleteManyByDeck
+    deleteManyByDeck,
+    getAllCards
 } from "../controllers/card.controller.js";
 
 const router = Router();
 
 router.route("/").post(createCard);
+router.route("/").get(getAllCards);
 router.route("/:id").get(getOneCard);
 router.route("/:id").put(updateCard);
 router.route("/:id").delete(deleteCard);

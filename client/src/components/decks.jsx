@@ -1,20 +1,39 @@
+import { useEffect, useState } from "react";
 import Hover3D from "../assets/js/hover3D";
 import { Link } from "react-router-dom";
 
 const Decks  = (props) =>{
-    const {decks } = props
+    const {filteredDecks, setFilteredDecks, cards} = props 
+    const [filteredDecksLoaded, setFilteredDecksLoaded]  = useState(false);
+
     const createHoverEffect = () => {
         let hoverEffect = new Hover3D(".hover-effect");
       };
     
       setTimeout(createHoverEffect, 1000);
 
-    return (
+      useEffect(() => {
+        let filteredCardsArr = []
+        let nonstateFilteredDecks = [...filteredDecks]
+        for (let i=0; i<nonstateFilteredDecks.length;i++) {
+            for (let j=0; j<cards.length; j++) {
+                if (cards[j].deck === nonstateFilteredDecks[i]._id) {
+                    filteredCardsArr.push(cards[j])
+                }
+            }
+            nonstateFilteredDecks[i].cards=filteredCardsArr
+            filteredCardsArr=[]
+        }
+        setFilteredDecks([...nonstateFilteredDecks])
+        // console.log(nonstateFilteredDecks);
+        setFilteredDecksLoaded(true);
+      }, [filteredDecksLoaded])
+
+    return ( filteredDecksLoaded &&
         <div className="col-11 d-flex align-items-center mt-3 m-auto gap-5">
-            {decks.map((deck, i) => {
+            {filteredDecks.map((deck, i) => {
                 let appearancesSum = 0;
                 for (i = 0; i< deck.cards.length; i++) {
-                    console.log("appearances:" + deck.cards[i]);
                     appearancesSum += parseInt(deck.cards[i].appearances) 
                 }
                 if (appearancesSum === 0 || deck.cards.length === 0) {
@@ -53,7 +72,7 @@ const Decks  = (props) =>{
                                 <div className = "hover-deck-stack-content">
                                     <div className="deck-stack-title">
                                         <h1>{deck.deckName}</h1>
-                                        <h5>{`Success Rate: ${successRate}`}</h5>
+                                        <h5>{`Success Rate: ${successRate}%`}</h5>
                                     </div>
                                 </div>
                             </div>

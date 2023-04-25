@@ -1,19 +1,29 @@
 import Hover3D from "../assets/js/hover3D";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Stacks  = (props) =>{
-const {stacks, highlightedStack} = props
+const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId} = props
 const createHoverEffect = () => {
     let hoverEffect = new Hover3D(".hover-effect");
   };
 
   setTimeout(createHoverEffect, 1000);
 
-//   const showButtons = (id) => {
-//     document.getElementById(`stack-deck-buttons-${id}`).classList.remove("hidden");
-//   }
+  const handleDelete = (stackId) => {
+    axios.delete('http://localhost:8000/api/stacks/' + stackId)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    
+    setStacksLoaded(false)
+  }
 
-// creating a new stacks should also set that stack as the highlighted stack
+  const handleShowEdit = (stackId) => {
+    setShowEditStack(true)
+    setStackId(stackId)
+    // console.log(stackId);
+  }
+
     return (
         <div className="col-11 d-flex align-items-center mt-3 m-auto gap-5">
             {stacks.map((stack, i) => {
@@ -27,11 +37,9 @@ const createHoverEffect = () => {
                     </div>
                     <div id={`stack-deck-buttons-${stack._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
                             <Link>
-                            <button className="btn btn-primary" >Edit</button>
+                            <button className="btn btn-primary" value={stack._id} onClick={() => handleShowEdit(stack._id)} >Rename</button>
                             </Link>
-                            <Link>
-                            <button className="btn btn-primary" >Delete</button>
-                            </Link>
+                            <button className="btn btn-primary" onClick={() => handleDelete(stack._id)} >Delete</button>
                         </div>
                 </div>
                 )

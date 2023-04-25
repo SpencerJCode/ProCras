@@ -26,6 +26,17 @@ async function getOneCard(request, response) {
   }
 }
 
+//gets all cards
+async function getAllCards(request, response) {
+  try {
+    const cards = await Card.find();
+    response.status(200).json(cards);
+  } catch (error) {
+    console.log(error);
+    response.status(400).json(error);
+  }
+}
+
 //Gets all cards in a deck
 async function getAllDeckCards(request, response) {
   try {
@@ -69,4 +80,4 @@ async function deleteManyByDeck(request, response) {
   }
 }
 
-export { createCard, getOneCard, updateCard, deleteCard, getAllDeckCards, deleteManyByDeck };
+export { createCard, getOneCard, updateCard, deleteCard, getAllDeckCards, deleteManyByDeck, getAllCards };
