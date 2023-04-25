@@ -9,6 +9,7 @@ const MyCards = (props) => {
   const [cards, setCards] = useState([]);
   const [stacksLoaded, setStacksLoaded ] = useState(false);
   const [decksLoaded, setDecksLoaded ] = useState(false);
+  
 
   useEffect(()=>{
     axios.get('http://localhost:8000/api/stacks')
@@ -18,6 +19,7 @@ const MyCards = (props) => {
         })
         .catch(err => console.error(err));
 },[stacksLoaded]);
+
 // useEffect(()=>{
 //   axios.get('http://localhost:8000/api/decks')
 //       .then(res=>{
