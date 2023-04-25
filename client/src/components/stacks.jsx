@@ -2,14 +2,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Stacks  = (props) =>{
-const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId} = props
+const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId, setShowDeleteWarning} = props
 
-  const handleDelete = (stackId) => {
-    axios.delete('http://localhost:8000/api/stacks/' + stackId)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err))
-    
-    setStacksLoaded(false)
+  const showDelete = (stackId) => {
+    setShowDeleteWarning(true)
+    setStackId(stackId)
   }
 
   const handleShowEdit = (stackId) => {
@@ -33,7 +30,7 @@ const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId} 
                             <Link>
                             <button className="btn btn-primary" value={stack._id} onClick={() => handleShowEdit(stack._id)} >Rename</button>
                             </Link>
-                            <button className="btn btn-primary" onClick={() => handleDelete(stack._id)} >Delete</button>
+                            <button className="btn btn-primary" onClick={() => showDelete(stack._id)} >Delete</button>
                         </div>
                 </div>
                 )

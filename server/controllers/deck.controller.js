@@ -48,7 +48,7 @@ async function getAllStackDecks(request, response) {
 async function updateDeck(request, response) {
   // console.log("update deck test");
   try {
-    const deck = await Deck.findOneAndUpdate({_id: request.params.id},request.body);
+    const deck = await Deck.findOneAndUpdate({_id: request.params.id},request.body, {new:true});
     console.log(deck);
     response.status(200).json(deck);
   } catch (error) {

@@ -5,6 +5,10 @@ import Stacks from "../components/stacks"
 import { Link } from "react-router-dom"
 import AddStackModal from "../components/AddStackModal"
 import EditStackModal from "../components/EditStackModal"
+import DeleteWarningModal from "../components/DeleteWarningModal"
+import EditDeckModal from "../components/EditDeckModal"
+import DeleteWarningDeckModal from "../components/DeleteWarningDeckModal"
+
 
 const MyCards = (props) => {
   const [stacks, setStacks] = useState([]);
@@ -15,8 +19,13 @@ const MyCards = (props) => {
   const [decksLoaded, setDecksLoaded ] = useState(false);
   const [cardsLoaded, setCardsLoaded] = useState(false);
   const [showAddStack, setShowAddStack] = useState(false);
+  const [showAddDeck, setShowAddDeck] = useState(false);
   const [showEditStack, setShowEditStack] = useState(false);
+  const [showEditDeck, setShowEditDeck] = useState(false);
+  const [showDeleteWarning, setShowDeleteWarning] = useState(false);
+  const [showDeleteDeckWarning, setShowDeleteDeckWarning] = useState(false);
   const [stackId, setStackId] = useState("");
+  const [deckId, setDeckId] = useState('');
 
   useEffect(()=>{
     if (stacksLoaded === false) {
@@ -52,21 +61,25 @@ const MyCards = (props) => {
     setShowAddStack(true);
   }
 
+  const handleOpenDeckModal = () =>{
+    setShowAddDeck(true);
+  }
+
     return (
       <div>
         <EditStackModal showEditStack={showEditStack} setShowEditStack={setShowEditStack} setStacksLoaded={setStacksLoaded} stackId={stackId} />
         <AddStackModal showAddStack={showAddStack} setShowAddStack={setShowAddStack} setStacksLoaded={setStacksLoaded} />
+        <DeleteWarningModal stackId={stackId} showDeleteWarning={showDeleteWarning} setShowDeleteWarning={setShowDeleteWarning} setStacksLoaded={setStacksLoaded}/>
+        <EditDeckModal showEditDeck={showEditDeck} setShowEditDeck={setShowEditDeck} setStacksLoaded={setStacksLoaded} deckId={deckId}/>
+        <DeleteWarningDeckModal deckId={deckId} showDeleteDeckWarning={showDeleteDeckWarning} setShowDeleteDeckWarning={setShowDeleteDeckWarning} setStacksLoaded={setStacksLoaded}/>
         <Link>
           <button className="btn btn-primary mt-3" onClick={handleOpenStackModal}>Add stack</button>
         </Link>
          <div className = "stackContainer col-10">
-            {/* study button? */}
-            {stacksLoaded && <Stacks stacks = {stacks} highlightedStack = {highlightedStack} setStacksLoaded={setStacksLoaded} setShowEditStack={setShowEditStack} setStackId={setStackId} />}
+            {stacksLoaded && <Stacks stacks = {stacks} highlightedStack = {highlightedStack} setStacksLoaded={setStacksLoaded} setShowEditStack={setShowEditStack} setStackId={setStackId} setShowDeleteWarning={setShowDeleteWarning}/>}
           </div>
+          <button className="btn btn-primary mt-3" onClick={handleOpenDeckModal}>Add Deck to Stack</button>
           <div className = "deckContainer">
-            Deck Row (Make new deck button)
-            Clicking on a deck enables edit/delete/add card
-            {/* study button? */}
             {decksLoaded && <Decks filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks} cards = {cards} decksLoaded={decksLoaded} setDecksLoaded={setDecksLoaded} />}
           </div>
       </div>
