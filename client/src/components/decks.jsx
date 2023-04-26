@@ -62,7 +62,7 @@ const Decks = (props) => {
                                         <button className="btn btn-primary shadow-sm">Edit</button>
                                     </Link>
                                     <Link to="/addcards" state={{deck}}>
-                                        <button className="btn btn-primary shadow-sm" >Add Cards</button>
+                                        <button className="btn btn-primary shadow-sm" >+ Add Cards</button>
                                     </Link>
                                     <Link>
                                         <button className="btn btn-danger shadow-sm" >Delete</button>
@@ -89,7 +89,7 @@ const Decks = (props) => {
                                         <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id)}>Edit</button>
                                     </Link>
                                     <Link to="/addcards" state={{deck}}>
-                                        <button className="btn btn-primary shadow-sm">Add Cards</button>
+                                        <button className="btn btn-primary shadow-sm">+ Add Cards</button>
                                     </Link>
                                     <Link>
                                         <button className="btn btn-danger shadow-sm" >Delete</button>

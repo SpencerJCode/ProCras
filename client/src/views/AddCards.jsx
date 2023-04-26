@@ -66,7 +66,7 @@ function AddCards(props) {
             {linkData.deck.cards.map((card, i) => {
               return <p onClick={() => handleSetCard(card)}>{card.cardFront}</p>
             })}
-            <button className="btn btn-primary my-shadow" onClick={clearForm} >Add Button</button>
+            <button className="btn btn-primary my-shadow" onClick={clearForm} >+ Add New Card</button>
           </div>
         </div>
       </div>
