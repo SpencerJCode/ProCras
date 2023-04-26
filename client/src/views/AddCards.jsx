@@ -5,19 +5,54 @@ function AddCards(props) {
   const location = useLocation();
   const linkData = location.state;
   const [card, setCard] = useState({});
+  const [cardFront, setCardFront] = useState("");
+  const [cardBack, setCardBack] = useState("");
+  const [cardFrontError, setCardFrontError] = useState(null)
+  const [cardBackError, setCardBackError] = useState(null)
   // console.log(linkData);
 
+  let formIsValid = false;
+  formIsValid = cardFrontError === null && cardBackError === null;
+
   const handleSetCard = (card) => {
-    console.log(card);
+    // console.log(card);
     setCard(card)
+  }
+
+  const handleCardFront = (e) => {
+    setCardFront(e.target.value)
+    if (e.target.value < 1) {
+      setCardFrontError("Card front must not be blank.")
+    }
+    else {
+      setCardFrontError(null)
+    }
+  }
+
+  const handleCardBack = (e) => {
+    setCardBack(e.target.value)
+    if (e.target.value < 1) {
+      setCardBackError("Card back must not be blank.")
+    }
+    else {
+      setCardBackError(null)
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setCard("");
+    setCardFront("");
+    setCardBack("");
   }
 
   const clearForm = () => {
     setCard("");
+    setCardFront("");
+    setCardBack("");
+    setCardFrontError(null);
+    setCardBackError(null);
   }
 
   return (
@@ -39,23 +74,25 @@ function AddCards(props) {
             <div className="card-front">
               <div className='form-group col-9 m-auto'>
                 <label htmlFor="cardFront" className='mb-3'>Card Front:</label>
-                <input type="text" name="cardFront" id="cardFront" className='form-control' placeholder={card.cardFront} />
+                <input type="text" name="cardFront" id="cardFront" className='form-control' value={cardFront} placeholder={card.cardFront} onChange={handleCardFront} />
+                {cardFrontError ? (<p style={{ color: "tomato" }} className="mt-2">{cardFrontError}</p>) : ("")}
               </div>
             </div>
             <div className="card-back">
             <div className='form-group col-9 m-auto'>
                 <label htmlFor="cardBack" className='mb-3'>Card Back:</label>
-                <input type="text" name="cardBack" id="cardBack" className='form-control' placeholder={card.cardBack} />
+                <input type="text" name="cardBack" id="cardBack" className='form-control' value={cardBack} placeholder={card.cardBack} onChange={handleCardBack} />
+                {cardBackError ? (<p style={{ color: "tomato" }} className="mt-2">{cardBackError}</p>) : ("")}
               </div>
             </div>
           </div>
           <div className='right-side'>
-            <div className='success-rate'>
+            <div className='success-rate text-light'>
               <p>{card.successes}</p>
             </div>
             <div className="buttons d-flex flex-column gap-4">
-              <button type='submit' className='btn btn-primary shadow-sm'>Save</button>
-              <button className='btn btn-danger shadow-sm'>Delete</button>
+              <button type='submit' className={`btn btn-primary my-shadow ${formIsValid ? "" : "disabled"}`}>Save</button>
+              <button className='btn btn-danger my-shadow'>Delete</button>
             </div>
           </div>
         </div>
