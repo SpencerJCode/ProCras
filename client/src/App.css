@@ -239,7 +239,7 @@ body {
   text-align: center;
   height: 300px;
   padding: 10px;
-  background-color: rgb(197, 207, 245);
+  background-color: rgb(106, 132, 158);
   border-radius: 10px;
   box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.2);
   margin: 10px auto;
@@ -251,7 +251,7 @@ body {
 }
 
 .deckContainer {
-  background-color: rgb(192, 241, 216);
+  background-color: rgb(156, 168, 179);
   text-align: center;
   height: 300px;
   padding: 10px;
@@ -294,7 +294,7 @@ body {
 }
 
 .add-card-bg {
-  background-color: rgb(197, 228, 229);
+  background-color: rgb(218, 202, 110);
   border-radius: 6px;
   margin-top: 20px !important;
   padding: 20px;
@@ -317,3 +317,30 @@ body {
   box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1) ;
 }
 
+
+/* Study Form */
+.accordion-body p {
+  cursor: pointer;
+}
+
+.accordion-body {
+  max-height: 280px;
+  overflow: auto;
+}
+
+.stacks-header {
+  background-color: rgb(106, 132, 158);
+}
+
+.decks-header {
+  background-color: rgb(156, 168, 179);
+}
+
+.accordion-header {
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+.selection-list {
+  height: 350px;
+  overflow: auto;
+}

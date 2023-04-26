@@ -6,8 +6,10 @@ import MyCards from "./views/MyCards";
 import Browse from "./views/Browse";
 import Study from "./views/Study";
 import AddCards from "./views/AddCards";
+import { useState } from "react";
 
 function App() {
+  const [deck, setDeck] = useState("");
   return (
     <>
       <div>
@@ -15,8 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/mycards" element={<MyCards />} />
-          <Route path="/addcards" element={<AddCards />} />
+          <Route path="/mycards" element={<MyCards setDeck={setDeck} deck={deck} />} />
+          <Route path="/addcards" element={<AddCards deck={deck} />} />
           <Route path="/study" element={<Study />} />
           <Route path="/browse" element={<Browse />} />
         </Routes>

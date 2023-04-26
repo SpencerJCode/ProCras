@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
 const Stacks  = (props) =>{
-const {stacks, highlightedStack, setShowEditStack, setStackId, setShowDeleteWarning} = props
+const {stacks, highlightedStack, setShowEditStack, setStackId, setShowDeleteStackWarning} = props
 
   const showDelete = (stackId) => {
-    setShowDeleteWarning(true)
+    setShowDeleteStackWarning(true)
     setStackId(stackId)
   }
 

@@ -5,6 +5,10 @@ const DeckSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Stack",
     },
+    studySession: {
+      type: Boolean,
+      default: false,
+    },
     deckName: {
       type: String,
       required: [true, "Please provide a name for this deck"],

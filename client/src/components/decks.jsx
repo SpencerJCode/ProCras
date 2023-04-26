@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Decks = (props) => {
-    const { filteredDecks, setFilteredDecks, cards, setShowEditDeck, setDeckId, stackId, setStackId, filteredDecksLoaded, setFilteredDecksLoaded, setShowDeleteDeckWarning } = props
+    const { filteredDecks, setFilteredDecks, cards, setShowEditDeck, setDeckId, stackId, setStackId, filteredDecksLoaded, setFilteredDecksLoaded, setShowDeleteDeckWarning, setDeck } = props
     const navigate = useNavigate();
 
     //horizontal scroll on the deck-list
@@ -46,6 +46,11 @@ const Decks = (props) => {
         setDeckId(id)
     }
 
+    const navigateToAddCards = (deck) => {
+        setDeck(deck)
+        navigate('/addcards')
+    }
+
     return (filteredDecksLoaded &&
         <div className="d-flex align-items-center deck-list">
                 {/* When I add a key to the below returns, the decks become duplicated. */}
@@ -64,15 +69,9 @@ const Decks = (props) => {
                                     </div>
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
-                                    <Link>
-                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
-                                    </Link>
-                                    <Link to="/addcards" state={{deck}}>
-                                        <button className="btn btn-primary shadow-sm" >+ Add Cards</button>
-                                    </Link>
-                                    <Link>
-                                        <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
-                                    </Link>
+                                    <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
+                                    <button className="btn btn-primary shadow-sm" onClick={() => navigateToAddCards(deck)} >+ Add Cards</button>
+                                    <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
                                 </div>
                             </div>)
                     }
@@ -91,15 +90,9 @@ const Decks = (props) => {
                                     </div>
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
-                                    <Link>
-                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
-                                    </Link>
-                                    <Link to="/addcards" state={{deck}}>
-                                        <button className="btn btn-primary shadow-sm">+ Add Cards</button>
-                                    </Link>
-                                    <Link>
-                                        <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
-                                    </Link>
+                                    <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
+                                    <button className="btn btn-primary shadow-sm" onClick={() => navigateToAddCards(deck)}>+ Add Cards</button>
+                                    <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
                                 </div>
                             </div>)
                     }

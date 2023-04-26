@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function AddCards(props) {
-  const location = useLocation();
-  const linkData = location.state;
+  const { deck } = props;
   const [card, setCard] = useState({});
   const [cardFront, setCardFront] = useState("");
   const [cardBack, setCardBack] = useState("");
   const [cardFrontError, setCardFrontError] = useState(null)
   const [cardBackError, setCardBackError] = useState(null)
-  // console.log(linkData);
 
   let formIsValid = false;
   formIsValid = cardFrontError === null && cardBackError === null;
 
   const handleSetCard = (card) => {
-    // console.log(card);
     setCard(card)
+    setCardFront(card.cardFront)
+    setCardBack(card.cardBack)
     document.getElementById("success-rate").style.display = "block"
   }
 
@@ -42,8 +41,24 @@ function AddCards(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //if card has id, put request; if no id, create
-    //have the deck info, but not the cards aray. After updating the cards, will need to replace the ids with card objects again
+    if (card._id) {
+      axios.put('http://localhost:8000/api/cards/' + card._id, {
+        cardFront,
+        cardBack
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }
+    else {
+      console.log(deck._id);
+      axios.post('http://localhost:8000/api/cards', {
+        cardFront,
+        cardBack,
+        deck: deck._id
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }
     setCard("");
     setCardFront("");
     setCardBack("");
@@ -62,9 +77,9 @@ function AddCards(props) {
     <div className='d-flex m-auto col-8 justify-content-around add-card-bg my-shadow'>
       <div className="left-side col-4 mt-3">
         <div className="card my-shadow">
-          <div className="card-header">{linkData.deck.deckName}</div>
+          <div className="card-header">{deck.deckName} - {deck.cards.length} Cards</div>
           <div className="cards-list card-body">
-            {linkData.deck.cards.map((card, i) => {
+            {deck.cards.map((card, i) => {
               return <p onClick={() => handleSetCard(card)}>{card.cardFront}</p>
             })}
             <button className="btn btn-primary my-shadow" onClick={clearForm} >+ Add New Card</button>
@@ -82,7 +97,7 @@ function AddCards(props) {
               </div>
             </div>
             <div className="card-back">
-            <div className='form-group col-9 m-auto'>
+              <div className='form-group col-9 m-auto'>
                 <label htmlFor="cardBack" className='mb-3'>Card Back:</label>
                 <input type="text" name="cardBack" id="cardBack" className='form-control' value={cardBack} placeholder={card.cardBack} onChange={handleCardBack} />
                 {cardBackError ? (<p style={{ color: "tomato" }} className="mt-2">{cardBackError}</p>) : ("")}
@@ -91,7 +106,7 @@ function AddCards(props) {
           </div>
           <div className='right-side'>
             <div className='text-light' id='success-rate'>
-             {card.successes}%
+              {  card.appearances === 0 ? "New" : Math.floor((card.successes / card.appearances)*100)+ "%"}
             </div>
             <div className="buttons d-flex flex-column gap-4">
               <button type='submit' className={`btn btn-primary my-shadow ${formIsValid ? "" : "disabled"}`}>Save</button>

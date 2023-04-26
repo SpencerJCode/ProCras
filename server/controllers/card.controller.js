@@ -50,7 +50,7 @@ async function getAllDeckCards(request, response) {
 //Updates a card.
 async function updateCard(request, response) {
   try {
-    const card = await Card.findOneAndUpdate(request.params.id);
+    const card = await Card.findOneAndUpdate({_id: request.params.id}, request.body, {new:true} );
     response.status(200).json(card);
   } catch (error) {
     console.log(error);
