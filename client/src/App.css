@@ -148,8 +148,8 @@ body {
 
 /* Test Card on Home */
 .deck-stack {
-  width: 300px;
-  height: 150px;
+  width: 250px;
+  height: 125px;
   color: #343a40;
   text-align: center;
   border-radius: 6px;
@@ -229,22 +229,42 @@ body {
   pointer-events: none;
 }
 
+.create-stack {
+}
+
+.horizontal-line {
+  height: 1px;
+  background-color: rgba(0,0,0,.2);
+  margin: 10px;
+}
+
 .stackContainer {
-  margin: 0 auto;
   text-align: center;
-  padding: 20px;
-  background-color: rgb(181, 197, 255);
-  overflow-x: scroll;
+  height: 300px;
+  padding: 10px;
+  background-color: rgb(197, 207, 245);
   border-radius: 10px;
   box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
+  margin: 10px auto;
+}
+
+.stack-list {
+  padding: 20px;
+  overflow-x: auto;
 }
 
 .deckContainer {
-  margin: 0 auto;
+  background-color: rgb(192, 241, 216);
   text-align: center;
-  padding: 20px;
-  background-color: rgb(154, 255, 205);
-  overflow-x: scroll;
+  height: 300px;
+  padding: 10px;
   border-radius: 10px;
+  box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.2);
+  margin: 10px auto;
 }
+
+.deck-list {
+  padding: 20px;
+  overflow-x: auto;
+}
+

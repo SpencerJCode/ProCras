@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Stacks  = (props) =>{
 const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId, setShowDeleteWarning} = props
@@ -14,22 +15,32 @@ const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId, 
     setStackId(stackId)
   }
 
+  //horizontal scroll on the stack-list
+  useEffect(() => {
+    const stackList = document.querySelector(".stack-list");
+  stackList.addEventListener('wheel', (event) => {
+    event.preventDefault();
+    stackList.scrollBy({
+      left: event.deltaY < 0 ? -10 : 10,
+    });
+  });
+  });
+  
+
     return (
         <div className="d-flex align-items-center stack-list">
             {stacks.map((stack, i) => {
                 if (!(stack.studySession)) {
                 return (
-                <div className=" d-flex flex-column align-items-center m-auto" key={i}>
-                    <div onClick = {(e) => {highlightedStack(stack._id) }} className= "deck-stack hover-effect" >
+                <div className="d-flex flex-column align-items-center m-auto" key={i}>
+                    <div onClick = {(e) => {highlightedStack(stack._id) }} className= "deck-stack" >
                         <div>
-                            <h1>{stack.stackName}</h1>
+                            <h2>{stack.stackName}</h2>
                         </div>
                     </div>
                     <div id={`stack-deck-buttons-${stack._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
-                            <Link>
-                            <button className="btn btn-primary" value={stack._id} onClick={() => handleShowEdit(stack._id)} >Rename</button>
-                            </Link>
-                            <button className="btn btn-primary" onClick={() => showDelete(stack._id)} >Delete</button>
+                            <button className="btn btn-primary shadow-sm" value={stack._id} onClick={() => handleShowEdit(stack._id)} >Rename</button>
+                            <button className="btn btn-danger shadow-sm" onClick={() => showDelete(stack._id)} >Delete</button>
                         </div>
                 </div>
                 )
