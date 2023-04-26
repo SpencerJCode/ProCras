@@ -41,7 +41,7 @@ function AddCards(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    //if card has id, put request; if no id, create
     setCard("");
     setCardFront("");
     setCardBack("");
