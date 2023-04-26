@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Decks = (props) => {
-    const { filteredDecks, setFilteredDecks, cards, setShowEditDeck, setDeckId, stackId, setStackId, filteredDecksLoaded, setFilteredDecksLoaded } = props
+    const { filteredDecks, setFilteredDecks, cards, setShowEditDeck, setDeckId, stackId, setStackId, filteredDecksLoaded, setFilteredDecksLoaded, setShowDeleteDeckWarning } = props
     const navigate = useNavigate();
 
     //horizontal scroll on the deck-list
@@ -19,7 +19,6 @@ const Decks = (props) => {
     }, [filteredDecksLoaded]);
 
     useEffect(() => {
-        console.log(filteredDecks)
         let filteredCardsArr = []
         let nonstateFilteredDecks = [...filteredDecks]
         for (let i = 0; i < nonstateFilteredDecks.length; i++) {
@@ -32,7 +31,6 @@ const Decks = (props) => {
             filteredCardsArr = []
         }
         setFilteredDecks([...nonstateFilteredDecks]);
-        console.log(nonstateFilteredDecks)
         setFilteredDecksLoaded(true);
         
 }, [filteredDecksLoaded])
@@ -41,6 +39,11 @@ const Decks = (props) => {
         setShowEditDeck(true)
         setDeckId(deckId)
         setStackId(stackId)
+    }
+
+    const showDelete = (id) => {
+        setShowDeleteDeckWarning(true)
+        setDeckId(id)
     }
 
     return (filteredDecksLoaded &&
@@ -62,13 +65,13 @@ const Decks = (props) => {
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
                                     <Link>
-                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Edit</button>
+                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
                                     </Link>
                                     <Link to="/addcards" state={{deck}}>
                                         <button className="btn btn-primary shadow-sm" >+ Add Cards</button>
                                     </Link>
                                     <Link>
-                                        <button className="btn btn-danger shadow-sm" >Delete</button>
+                                        <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
                                     </Link>
                                 </div>
                             </div>)
@@ -89,13 +92,13 @@ const Decks = (props) => {
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
                                     <Link>
-                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Edit</button>
+                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
                                     </Link>
                                     <Link to="/addcards" state={{deck}}>
                                         <button className="btn btn-primary shadow-sm">+ Add Cards</button>
                                     </Link>
                                     <Link>
-                                        <button className="btn btn-danger shadow-sm" >Delete</button>
+                                        <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
                                     </Link>
                                 </div>
                             </div>)

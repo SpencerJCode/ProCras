@@ -24,13 +24,13 @@ const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId,
       .catch((err) => console.log(err));
       setFilteredDecksLoaded(false)
       let updatedDecks = [...filteredDecks]
-      for (let i=0; i<updatedDecks; i++){
+      for (let i=0; i<updatedDecks.length; i++){
         if (updatedDecks[i]._id == deckId){
           updatedDecks[i].deckName = deckName
         }
       }
       setFilteredDecks([...updatedDecks])
-      highlightedStack(stackId)
+      highlightedStack(stackId) //we confirmed that stackId is correct
   };
 
   return (

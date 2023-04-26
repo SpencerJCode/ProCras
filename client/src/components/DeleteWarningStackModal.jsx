@@ -3,10 +3,10 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const DeleteWarningModal = ({ showDeleteWarning, setShowDeleteWarning, setStacksLoaded, stackId }) => {
+const DeleteWarningStackModal = ({ showDeleteStackWarning, setShowDeleteStackWarning, setStacksLoaded, stackId }) => {
 
   const handleClose = () => {
-    setShowDeleteWarning(false);
+    setShowDeleteStackWarning(false);
   };
 
   const handleSubmit = (e) => {
@@ -18,7 +18,7 @@ const DeleteWarningModal = ({ showDeleteWarning, setShowDeleteWarning, setStacks
   };
 
   return (
-    <Modal show={showDeleteWarning} onHide={handleClose}>
+    <Modal show={showDeleteStackWarning} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Warning</Modal.Title>
       </Modal.Header>
@@ -39,4 +39,4 @@ const DeleteWarningModal = ({ showDeleteWarning, setShowDeleteWarning, setStacks
   );
 };
 
-export default DeleteWarningModal;
+export default DeleteWarningStackModal;

@@ -3,27 +3,27 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const DeleteWarningDeckModal = ({ showDeleteWarning, setShowDeleteWarning, setStacksLoaded, stackId }) => {
+const DeleteWarningDeckModal = ({ showDeleteDeckWarning, setShowDeleteDeckWarning, setDecksLoaded, deckId }) => {
 
   const handleClose = () => {
-    setShowDeleteWarning(false);
+    setShowDeleteDeckWarning(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.delete('http://localhost:8000/api/stacks/' + stackId)
+    axios.delete('http://localhost:8000/api/decks/' + deckId)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
-    setStacksLoaded(false)
+    setDecksLoaded(false)
   };
 
   return (
-    <Modal show={showDeleteWarning} onHide={handleClose}>
+    <Modal show={showDeleteDeckWarning} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Warning</Modal.Title>
       </Modal.Header>
       <Modal.Body><h3 className="text-danger">
-        This will delete all associated decks and cards. Continue?</h3>
+        This will delete all associated cards. Continue?</h3>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Cancel

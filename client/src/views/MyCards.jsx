@@ -21,7 +21,7 @@ const MyCards = (props) => {
   const [showAddDeck, setShowAddDeck] = useState(false);
   const [showEditStack, setShowEditStack] = useState(false);
   const [showEditDeck, setShowEditDeck] = useState(false);
-  const [showDeleteWarning, setShowDeleteWarning] = useState(false);
+  const [showDeleteStackWarning, setShowDeleteStackWarning] = useState(false);
   const [showDeleteDeckWarning, setShowDeleteDeckWarning] = useState(false);
   const [stackId, setStackId] = useState("");
   const [deckId, setDeckId] = useState('');
@@ -70,18 +70,18 @@ const MyCards = (props) => {
     <div>
       <EditStackModal showEditStack={showEditStack} setShowEditStack={setShowEditStack} setStacksLoaded={setStacksLoaded} stackId={stackId} />
       <AddStackModal showAddStack={showAddStack} setShowAddStack={setShowAddStack} setStacksLoaded={setStacksLoaded} />
-      <DeleteWarningStackModal stackId={stackId} showDeleteWarning={showDeleteWarning} setShowDeleteWarning={setShowDeleteWarning} setStacksLoaded={setStacksLoaded} />
+      <DeleteWarningStackModal stackId={stackId} showDeleteStackWarning={showDeleteStackWarning} setShowDeleteStackWarning={setShowDeleteStackWarning} setStacksLoaded={setStacksLoaded} />
       <EditDeckModal showEditDeck={showEditDeck} setShowEditDeck={setShowEditDeck} setStacksLoaded={setStacksLoaded} deckId={deckId} setDecksLoaded={setDecksLoaded} filteredDecksLoaded={filteredDecksLoaded} setFilteredDecksLoaded={setFilteredDecksLoaded} stackId={stackId} highlightedStack={highlightedStack} filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks}/>
-      <DeleteWarningDeckModal deckId={deckId} showDeleteDeckWarning={showDeleteDeckWarning} setShowDeleteDeckWarning={setShowDeleteDeckWarning} setStacksLoaded={setStacksLoaded} />
+      <DeleteWarningDeckModal deckId={deckId} showDeleteDeckWarning={showDeleteDeckWarning} setShowDeleteDeckWarning={setShowDeleteDeckWarning} setDecksLoaded={setDecksLoaded} />
       <div className="stackContainer col-10">
         <button className="btn btn-primary shadow-sm" onClick={handleOpenStackModal}><span>+</span> Create stack</button>
         <div className="horizontal-line" ></div>
-        {stacksLoaded && <Stacks stacks={stacks} highlightedStack={highlightedStack} stacksLoaded={stacksLoaded} setStacksLoaded={setStacksLoaded} setShowEditStack={setShowEditStack} setStackId={setStackId} setShowDeleteWarning={setShowDeleteWarning} />}
+        {stacksLoaded && <Stacks stacks={stacks} highlightedStack={highlightedStack} stacksLoaded={stacksLoaded} setStacksLoaded={setStacksLoaded} setShowEditStack={setShowEditStack} setStackId={setStackId} setShowDeleteStackWarning={setShowDeleteStackWarning} />}
       </div>
       <div className="deckContainer col-10">
         <button className="btn btn-primary shadow-sm" onClick={handleOpenDeckModal}><span>+</span> Add Deck to Stack</button>
         <div className="horizontal-line" ></div>
-        {decksLoaded && <Decks filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks} cards={cards} decksLoaded={decksLoaded} setDecksLoaded={setDecksLoaded} setShowEditDeck={setShowEditDeck} setDeckId={setDeckId} stackId={stackId} setStackId={setStackId} filteredDecksLoaded={filteredDecksLoaded} setFilteredDecksLoaded={setFilteredDecksLoaded}/>}
+        {decksLoaded && <Decks filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks} cards={cards} decksLoaded={decksLoaded} setDecksLoaded={setDecksLoaded} setShowEditDeck={setShowEditDeck} setDeckId={setDeckId} stackId={stackId} setStackId={setStackId} filteredDecksLoaded={filteredDecksLoaded} setFilteredDecksLoaded={setFilteredDecksLoaded} setShowDeleteDeckWarning={setShowDeleteDeckWarning}/>}
       </div>
     </div>
   );
