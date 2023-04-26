@@ -89,7 +89,7 @@ function AddCards(props) {
             </div>
           </div>
           <div className='right-side'>
-            <div className='success-rate text-light' id='success-rate'>
+            <div className='text-light' id='success-rate'>
              {card.successes}%
             </div>
             <div className="buttons d-flex flex-column gap-4">
