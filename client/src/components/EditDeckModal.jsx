@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId, setDecksLoaded }) => {
+const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId, setDecksLoaded, stackId, highlightedStack, filteredDecksLoaded, setFilteredDecksLoaded, filteredDecks, setFilteredDecks}) => {
   const [deckName, setDeckName] = useState("");
 
   const handleClose = () => {
@@ -22,7 +22,15 @@ const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId,
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    setStacksLoaded(false)
+      setFilteredDecksLoaded(false)
+      let updatedDecks = [...filteredDecks]
+      for (let i=0; i<updatedDecks; i++){
+        if (updatedDecks[i]._id == deckId){
+          updatedDecks[i].deckName = deckName
+        }
+      }
+      setFilteredDecks([...updatedDecks])
+      highlightedStack(stackId)
   };
 
   return (

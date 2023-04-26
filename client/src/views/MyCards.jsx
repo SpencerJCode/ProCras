@@ -25,9 +25,10 @@ const MyCards = (props) => {
   const [showDeleteDeckWarning, setShowDeleteDeckWarning] = useState(false);
   const [stackId, setStackId] = useState("");
   const [deckId, setDeckId] = useState('');
+  const [filteredDecksLoaded, setFilteredDecksLoaded ] = useState(false)
 
   useEffect(() => {
-    if (stacksLoaded === false) {
+    if (stacksLoaded === false || decksLoaded === false) {
       axios.get('http://localhost:8000/api/stacks')
         .then(res => {
           setStacks(res.data);
@@ -50,7 +51,7 @@ const MyCards = (props) => {
     }
 
 
-  }, [cardsLoaded, stacksLoaded, decksLoaded]);
+  }, [cardsLoaded, stacksLoaded, decksLoaded, filteredDecksLoaded]);
 
   const highlightedStack = (id) => {
     setFilteredDecks(decks.filter((deck) => deck.stack === id))
@@ -70,7 +71,7 @@ const MyCards = (props) => {
       <EditStackModal showEditStack={showEditStack} setShowEditStack={setShowEditStack} setStacksLoaded={setStacksLoaded} stackId={stackId} />
       <AddStackModal showAddStack={showAddStack} setShowAddStack={setShowAddStack} setStacksLoaded={setStacksLoaded} />
       <DeleteWarningStackModal stackId={stackId} showDeleteWarning={showDeleteWarning} setShowDeleteWarning={setShowDeleteWarning} setStacksLoaded={setStacksLoaded} />
-      <EditDeckModal showEditDeck={showEditDeck} setShowEditDeck={setShowEditDeck} setStacksLoaded={setStacksLoaded} deckId={deckId} setDecksLoaded={setDecksLoaded} />
+      <EditDeckModal showEditDeck={showEditDeck} setShowEditDeck={setShowEditDeck} setStacksLoaded={setStacksLoaded} deckId={deckId} setDecksLoaded={setDecksLoaded} filteredDecksLoaded={filteredDecksLoaded} setFilteredDecksLoaded={setFilteredDecksLoaded} stackId={stackId} highlightedStack={highlightedStack} filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks}/>
       <DeleteWarningDeckModal deckId={deckId} showDeleteDeckWarning={showDeleteDeckWarning} setShowDeleteDeckWarning={setShowDeleteDeckWarning} setStacksLoaded={setStacksLoaded} />
       <div className="stackContainer col-10">
         <button className="btn btn-primary shadow-sm" onClick={handleOpenStackModal}><span>+</span> Create stack</button>
@@ -80,7 +81,7 @@ const MyCards = (props) => {
       <div className="deckContainer col-10">
         <button className="btn btn-primary shadow-sm" onClick={handleOpenDeckModal}><span>+</span> Add Deck to Stack</button>
         <div className="horizontal-line" ></div>
-        {decksLoaded && <Decks filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks} cards={cards} decksLoaded={decksLoaded} setDecksLoaded={setDecksLoaded} setShowEditDeck={setShowEditDeck} setDeckId={setDeckId} />}
+        {decksLoaded && <Decks filteredDecks={filteredDecks} setFilteredDecks={setFilteredDecks} cards={cards} decksLoaded={decksLoaded} setDecksLoaded={setDecksLoaded} setShowEditDeck={setShowEditDeck} setDeckId={setDeckId} stackId={stackId} setStackId={setStackId} filteredDecksLoaded={filteredDecksLoaded} setFilteredDecksLoaded={setFilteredDecksLoaded}/>}
       </div>
     </div>
   );
