@@ -40,10 +40,6 @@ const Decks = (props) => {
         setDeckId(deckId)
     }
 
-    const naviagteToAddCards = (deckId, deckCards) => {
-        // console.log("test");
-    }
-
     return (filteredDecksLoaded &&
         <div className="d-flex align-items-center deck-list">
                 {/* When I add a key to the below returns, the decks become duplicated. */}
@@ -63,9 +59,9 @@ const Decks = (props) => {
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
                                     <Link>
-                                        <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id)} >Edit</button>
+                                        <button className="btn btn-primary shadow-sm">Edit</button>
                                     </Link>
-                                    <Link to={{pathname: "/addcards", deckId: deck._id, deckCards: deck.cards}}>
+                                    <Link to="/addcards" state={{deck}}>
                                         <button className="btn btn-primary shadow-sm" >Add Cards</button>
                                     </Link>
                                     <Link>
@@ -92,8 +88,8 @@ const Decks = (props) => {
                                     <Link>
                                         <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id)}>Edit</button>
                                     </Link>
-                                    <Link to={{pathname: "/addcards", deckId: deck._id, deckCards: deck.cards}}>
-                                        <button className="btn btn-primary shadow-sm" onClick={() => naviagteToAddCards(deck._id, deck.cards)} >Add Cards</button>
+                                    <Link to="/addcards" state={{deck}}>
+                                        <button className="btn btn-primary shadow-sm">Add Cards</button>
                                     </Link>
                                     <Link>
                                         <button className="btn btn-danger shadow-sm" >Delete</button>

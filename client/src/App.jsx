@@ -6,7 +6,6 @@ import MyCards from "./views/MyCards";
 import Browse from "./views/Browse";
 import Study from "./views/Study";
 import AddCards from "./views/AddCards";
-import { useEffect } from "react";
 
 function App() {
   return (

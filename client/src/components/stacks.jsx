@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
-import axios from "axios";
 import { useEffect } from "react";
 
 const Stacks  = (props) =>{
-const {stacks, highlightedStack, setStacksLoaded, setShowEditStack, setStackId, setShowDeleteWarning} = props
+const {stacks, highlightedStack, setShowEditStack, setStackId, setShowDeleteWarning} = props
 
   const showDelete = (stackId) => {
     setShowDeleteWarning(true)

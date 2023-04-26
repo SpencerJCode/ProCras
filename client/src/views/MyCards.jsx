@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Decks from "../components/decks"
 import Stacks from "../components/stacks"
-import { Link } from "react-router-dom"
 import AddStackModal from "../components/AddStackModal"
 import EditStackModal from "../components/EditStackModal"
-import DeleteWarningModal from "../components/DeleteWarningModal"
+import DeleteWarningStackModal from "../components/DeleteWarningStackModal"
 import EditDeckModal from "../components/EditDeckModal"
 import DeleteWarningDeckModal from "../components/DeleteWarningDeckModal"
 
@@ -70,7 +69,7 @@ const MyCards = (props) => {
     <div>
       <EditStackModal showEditStack={showEditStack} setShowEditStack={setShowEditStack} setStacksLoaded={setStacksLoaded} stackId={stackId} />
       <AddStackModal showAddStack={showAddStack} setShowAddStack={setShowAddStack} setStacksLoaded={setStacksLoaded} />
-      <DeleteWarningModal stackId={stackId} showDeleteWarning={showDeleteWarning} setShowDeleteWarning={setShowDeleteWarning} setStacksLoaded={setStacksLoaded} />
+      <DeleteWarningStackModal stackId={stackId} showDeleteWarning={showDeleteWarning} setShowDeleteWarning={setShowDeleteWarning} setStacksLoaded={setStacksLoaded} />
       <EditDeckModal showEditDeck={showEditDeck} setShowEditDeck={setShowEditDeck} setStacksLoaded={setStacksLoaded} deckId={deckId} setDecksLoaded={setDecksLoaded} />
       <DeleteWarningDeckModal deckId={deckId} showDeleteDeckWarning={showDeleteDeckWarning} setShowDeleteDeckWarning={setShowDeleteDeckWarning} setStacksLoaded={setStacksLoaded} />
       <div className="stackContainer col-10">

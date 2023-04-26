@@ -265,3 +265,48 @@ body {
   overflow-x: auto;
 }
 
+/* Add Cards Page */
+.cards-list p {
+  cursor: pointer;
+}
+
+.card-front, .card-back {
+  width: 380px;
+  height: 230px;
+  border-radius: 6px;
+  background-image: url("https://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg");
+  background-size: 100%;
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
+    grayscale();
+  display: grid;
+  align-content: center;
+  text-align: center;
+  margin: 10px;
+}
+
+.card-front input, .card-back input {
+  font-size: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.card-front label, .card-back label {
+  font-size: 1.5rem;
+}
+
+.add-card-bg {
+  background-color: rgb(197, 228, 229);
+  border-radius: 6px;
+  margin-top: 20px !important;
+  padding: 20px;
+}
+
+.success-rate {
+  position: absolute;
+  top: 30px;
+  left: 930px;
+}
+
+.my-shadow {
+  box-shadow: -2px 2px 3px rgba(0, 0, 0, 0.1) ;
+}
+
