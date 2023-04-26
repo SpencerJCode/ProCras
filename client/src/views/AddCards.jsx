@@ -17,6 +17,7 @@ function AddCards(props) {
   const handleSetCard = (card) => {
     // console.log(card);
     setCard(card)
+    document.getElementById("success-rate").style.display = "block"
   }
 
   const handleCardFront = (e) => {
@@ -53,6 +54,7 @@ function AddCards(props) {
     setCardBack("");
     setCardFrontError(null);
     setCardBackError(null);
+    document.getElementById("success-rate").style.display = "none"
   }
 
   return (
@@ -87,8 +89,8 @@ function AddCards(props) {
             </div>
           </div>
           <div className='right-side'>
-            <div className='success-rate text-light'>
-              <p>{card.successes}</p>
+            <div className='success-rate text-light' id='success-rate'>
+             {card.successes}%
             </div>
             <div className="buttons d-flex flex-column gap-4">
               <button type='submit' className={`btn btn-primary my-shadow ${formIsValid ? "" : "disabled"}`}>Save</button>
