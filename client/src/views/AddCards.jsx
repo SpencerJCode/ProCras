@@ -43,6 +43,7 @@ function AddCards(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     //if card has id, put request; if no id, create
+    //have the deck info, but not the cards aray. After updating the cards, will need to replace the ids with card objects again
     setCard("");
     setCardFront("");
     setCardBack("");
