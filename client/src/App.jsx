@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import MyCards from "./views/MyCards";
 import Browse from "./views/Browse";
 import Study from "./views/Study";
+import AddCards from "./views/AddCards";
 import { useEffect } from "react";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/mycards" element={<MyCards />} />
+          <Route path="/addcards" element={<AddCards />} />
           <Route path="/study" element={<Study />} />
           <Route path="/browse" element={<Browse />} />
         </Routes>

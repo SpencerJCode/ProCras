@@ -229,9 +229,6 @@ body {
   pointer-events: none;
 }
 
-.create-stack {
-}
-
 .horizontal-line {
   height: 1px;
   background-color: rgba(0,0,0,.2);

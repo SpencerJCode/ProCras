@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Decks = (props) => {
     const { filteredDecks, setFilteredDecks, cards, setShowEditDeck, setDeckId } = props
     const [filteredDecksLoaded, setFilteredDecksLoaded] = useState(false);
+    const navigate = useNavigate();
 
     //horizontal scroll on the deck-list
     useEffect(() => {
@@ -39,6 +40,10 @@ const Decks = (props) => {
         setDeckId(deckId)
     }
 
+    const naviagteToAddCards = (deckId, deckCards) => {
+        // console.log("test");
+    }
+
     return (filteredDecksLoaded &&
         <div className="d-flex align-items-center deck-list">
                 {/* When I add a key to the below returns, the decks become duplicated. */}
@@ -60,7 +65,7 @@ const Decks = (props) => {
                                     <Link>
                                         <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id)} >Edit</button>
                                     </Link>
-                                    <Link>
+                                    <Link to={{pathname: "/addcards", deckId: deck._id, deckCards: deck.cards}}>
                                         <button className="btn btn-primary shadow-sm" >Add Cards</button>
                                     </Link>
                                     <Link>
@@ -87,8 +92,8 @@ const Decks = (props) => {
                                     <Link>
                                         <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id)}>Edit</button>
                                     </Link>
-                                    <Link>
-                                        <button className="btn btn-primary shadow-sm" >Add Cards</button>
+                                    <Link to={{pathname: "/addcards", deckId: deck._id, deckCards: deck.cards}}>
+                                        <button className="btn btn-primary shadow-sm" onClick={() => naviagteToAddCards(deck._id, deck.cards)} >Add Cards</button>
                                     </Link>
                                     <Link>
                                         <button className="btn btn-danger shadow-sm" >Delete</button>
