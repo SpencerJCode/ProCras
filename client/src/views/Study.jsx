@@ -16,6 +16,9 @@ const Study = (props) => {
   const [selectedStacks, setSelectedStacks] = useState([]);
   const [selectedDecks, setSelectedDecks] = useState([]);
   const [sessionDecks, setSessionDecks] = useState([]);
+  const [stackName, setStackName] = useState("");
+  const [stackNameError, setStackNameError] = useState(null);
+  //const for selected error, if there is nothing added to the list
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/stacks')
@@ -151,7 +154,7 @@ const Study = (props) => {
         </div>
       </div>
       <div className="bottom col-10 m-auto mt-3">
-        <div className="card previous-list-container text-light">
+        <div className="card previous-list-container text-light my-shadow">
           <div className="card-header">Previous Sessions</div>
           <div className="card-body">
             {sessionDecks.map((deck, i) => {
