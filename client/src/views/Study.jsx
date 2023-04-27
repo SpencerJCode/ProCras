@@ -68,7 +68,7 @@ const Study = (props) => {
   }
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
   }
 
   //if a stack is selected, remove all decks in that stack from the deck map on left side, document.getsjjsjd
