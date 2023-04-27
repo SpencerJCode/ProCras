@@ -37,8 +37,8 @@ const {stacks, highlightedStack, setShowEditStack, setStackId, setShowDeleteStac
                         </div>
                     </div>
                     <div id={`stack-deck-buttons-${stack._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
-                            <button className="btn btn-primary shadow-sm" value={stack._id} onClick={() => handleShowEdit(stack._id)} >Rename</button>
-                            <button className="btn btn-danger shadow-sm" onClick={() => showDelete(stack._id)} >Delete</button>
+                            <button className="btn btn-create text-light my-shadow" value={stack._id} onClick={() => handleShowEdit(stack._id)} >Rename</button>
+                            <button className="btn btn-delete text-light my-shadow" onClick={() => showDelete(stack._id)} >Delete</button>
                         </div>
                 </div>
                 )

@@ -76,13 +76,13 @@ function AddCards(props) {
   return (
     <div className='d-flex m-auto col-8 justify-content-around add-card-bg my-shadow'>
       <div className="left-side col-4 mt-3">
-        <div className="card my-shadow">
+        <div className="card my-shadow cards-list-container text-light">
           <div className="card-header">{deck.deckName} - {deck.cards.length} Cards</div>
           <div className="cards-list card-body">
             {deck.cards.map((card, i) => {
               return <p onClick={() => handleSetCard(card)}>{card.cardFront}</p>
             })}
-            <button className="btn btn-primary my-shadow" onClick={clearForm} >+ Add New Card</button>
+            <button className="btn btn-create text-light my-shadow" onClick={clearForm} >+ Add New Card</button>
           </div>
         </div>
       </div>
@@ -109,8 +109,8 @@ function AddCards(props) {
               {  card.appearances === 0 ? "New" : Math.floor((card.successes / card.appearances)*100)+ "%"}
             </div>
             <div className="buttons d-flex flex-column gap-4">
-              <button type='submit' className={`btn btn-primary my-shadow ${formIsValid ? "" : "disabled"}`}>Save</button>
-              <button className='btn btn-danger my-shadow'>Delete</button>
+              <button type='submit' className={`btn btn-create text-light my-shadow ${formIsValid ? "" : "disabled"}`}>Save</button>
+              <button className='btn btn-delete text-light my-shadow'>Delete</button>
             </div>
           </div>
         </div>

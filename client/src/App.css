@@ -29,6 +29,22 @@ body {
   background: #555;
 }
 
+.btn-delete {
+  background-color: rgb(187, 85, 96);
+}
+
+.btn-delete:hover {
+  background-color: rgb(174, 80, 89);
+}
+
+.btn-create {
+  background-color: rgb(82,102,122);
+}
+
+.btn-create:hover {
+  background-color: rgb(74, 92, 109);
+}
+
 .navbar-body {
   background-color: rgba(0, 33, 67, 0.6);
   padding: 10px;
@@ -270,6 +286,10 @@ body {
   cursor: pointer;
 }
 
+.cards-list-container {
+  background-color: rgb(106, 132, 158);
+}
+
 .card-front, .card-back {
   width: 380px;
   height: 230px;
@@ -294,7 +314,7 @@ body {
 }
 
 .add-card-bg {
-  background-color: rgb(218, 202, 110);
+  background-color: rgb(156, 168, 179);
   border-radius: 6px;
   margin-top: 20px !important;
   padding: 20px;
@@ -319,6 +339,18 @@ body {
 
 
 /* Study Form */
+.accordion {
+  border-radius: 10px !important;
+}
+
+#stacksHeading {
+  --bs-accordion-active-bg: rgb(106, 132, 158);
+}
+
+#decksHeading {
+  --bs-accordion-active-bg: rgb(156, 168, 179);
+}
+
 .accordion-body p {
   cursor: pointer;
 }
@@ -326,6 +358,15 @@ body {
 .accordion-body {
   max-height: 280px;
   overflow: auto;
+}
+
+#stacksBody {
+  background-color: rgb(106, 132, 158);
+}
+
+#decksBody {
+  background-color: rgb(156, 168, 179);
+  border-radius: 0px 0px 5px 5px;
 }
 
 .stacks-header {
@@ -336,11 +377,18 @@ body {
   background-color: rgb(156, 168, 179);
 }
 
-.accordion-header {
-  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+.accordion-button {
+  border: 0px;
+  outline: 0px;
 }
 
 .selection-list {
   height: 350px;
   overflow: auto;
+  background-color: rgb(106, 132, 158);
+}
+
+.previous-list-container {
+  min-height: 200px;
+  background-color: rgb(106, 132, 158);
 }

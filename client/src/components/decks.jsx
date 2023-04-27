@@ -64,14 +64,14 @@ const Decks = (props) => {
                             <div className="d-flex flex-column align-items-center m-auto">
                                 <div className="deck-stack m-auto">
                                     <div>
-                                        <h1>{deck.deckName}</h1>
+                                        <h2>{deck.deckName}</h2>
                                         <h5>Not Yet Studied</h5>
                                     </div>
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
-                                    <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
-                                    <button className="btn btn-primary shadow-sm" onClick={() => navigateToAddCards(deck)} >+ Add Cards</button>
-                                    <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
+                                    <button className="btn btn-create text-light my-shadow" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
+                                    <button className="btn btn-create text-light my-shadow" onClick={() => navigateToAddCards(deck)} >+ Add Cards</button>
+                                    <button className="btn btn-delete text-light my-shadow" onClick={() => showDelete(deck._id)}>Delete</button>
                                 </div>
                             </div>)
                     }
@@ -85,14 +85,14 @@ const Decks = (props) => {
                             <div className="d-flex flex-column align-items-center m-auto">
                                 <div className="deck-stack m-auto">
                                     <div>
-                                        <h1>{deck.deckName}</h1>
+                                        <h2>{deck.deckName}</h2>
                                         <h5>{`Success Rate: ${successRate}%`}</h5>
                                     </div>
                                 </div>
                                 <div id={`stack-deck-buttons-${deck._id}`} className="stack-deck-buttons d-flex gap-3 mt-3">
-                                    <button className="btn btn-primary shadow-sm" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
-                                    <button className="btn btn-primary shadow-sm" onClick={() => navigateToAddCards(deck)}>+ Add Cards</button>
-                                    <button className="btn btn-danger shadow-sm" onClick={() => showDelete(deck._id)}>Delete</button>
+                                    <button className="btn btn-create text-light my-shadow" onClick={() => handleEditDeck(deck._id, deck.stack)}>Rename</button>
+                                    <button className="btn btn-create text-light my-shadow" onClick={() => navigateToAddCards(deck)}>+ Add Cards</button>
+                                    <button className="btn btn-delete text-light my-shadow" onClick={() => showDelete(deck._id)}>Delete</button>
                                 </div>
                             </div>)
                     }
