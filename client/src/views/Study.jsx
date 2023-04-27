@@ -11,6 +11,7 @@ const Study = (props) => {
   const [sessionDecks, setSessionDecks] = useState([]);
   const [stackName, setStackName] = useState("");
   const [stackNameError, setStackNameError] = useState(null);
+  const [studyDeck, setStudyDeck] = useState({})
   //const for selected error, if there is nothing added to the list
 
   useEffect(() => {
@@ -69,38 +70,58 @@ const Study = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  }
+    let allSelectedDecks = [...selectedDecks]
+    for (let i=0; i<selectedStacks.length; i++){
+      for (let j=0; j<selectedStacks[i].decks.length; j++){
+        let foundDeckId = selectedStacks[i].decks[j]
+        let foundDeck = {}
+        for (let k=0; k<decks.length; k++){
+          if (decks[k]._id == foundDeckId){
+            foundDeck = decks[k]
+          }
+        }
+        let inDecks = false
+        for (let k=0; k<allSelectedDecks.length; k++){
+          if (allSelectedDecks[k]._id == foundDeck._id){inDecks = true}
+        }
+        if (inDecks == false){allSelectedDecks = [...allSelectedDecks, foundDeck]}
+      }
+    }
+    let allSelectedCards = []
+    
 
-  //if a stack is selected, remove all decks in that stack from the deck map on left side, document.getsjjsjd
-  //if stack is removed from session form, add the decks back to left side deck map
+    //for loop to get all cards in each deck and push into a new "Study Deck"
+    //set "Study Deck" to state and navigate to new page to review cards
+    //In study session, send axios "put" to update "appearances and successes on each card in Study Deck"
+  }
 
   return (
     <div>
       <div className="d-flex col-10 justify-content-around m-auto mt-3">
         <div className="left-side col-4">
-          <div class="accordion my-shadow" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="stacksHeading">
-                <button class="accordion-button stacks-header text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Stacks
+          <div className="accordion my-shadow" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="stacksHeading">
+                <button className="accordion-button stacks-header text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <h2>Stacks</h2>
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="stacksHeading" data-bs-parent="#accordionExample">
-                <div class="accordion-body text-light" id="stacksBody">
+              <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="stacksHeading" data-bs-parent="#accordionExample">
+                <div className="accordion-body text-light" id="stacksBody">
                   {stacks.map((stack, i) => {
                     return <p onClick={() => handleStackSelect(stack)} id={stack._id} >{stack.stackName}</p>
                   })}
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="decksHeading">
-                <button class="accordion-button collapsed decks-header text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Decks
+            <div className="accordion-item">
+              <h2 className="accordion-header" id="decksHeading">
+                <button className="accordion-button collapsed decks-header text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <h2>Decks</h2>
                 </button>
               </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="decksHeading" data-bs-parent="#accordionExample">
-                <div class="accordion-body text-light" id="decksBody">
+              <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="decksHeading" data-bs-parent="#accordionExample">
+                <div className="accordion-body text-light" id="decksBody">
                   {decks.map((deck, i) => {
                     return <p onClick={() => handleDeckSelect(deck)} id={deck._id} >{deck.deckName}</p>
                   })}
@@ -139,7 +160,7 @@ const Study = (props) => {
                   })}
                 </div>
                 <div className="study-button">
-                  <button className="btn my-shadow btn-create text-light">STUDY!</button>
+                  <button type="submit" className="btn my-shadow btn-create text-light">STUDY!</button>
                 </div>
               </div>
             </div>
