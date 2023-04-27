@@ -6,6 +6,7 @@ import MyCards from "./views/MyCards";
 import Browse from "./views/Browse";
 import Study from "./views/Study";
 import AddCards from "./views/AddCards";
+import Flashzone from "./views/Flashzone";
 import { useState } from "react";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/addcards" element={<AddCards deck={deck} />} />
           <Route path="/study" element={<Study />} />
           <Route path="/browse" element={<Browse />} />
+          <Route path="/flashzone" element={<Flashzone />} />
         </Routes>
       </div>
     </>

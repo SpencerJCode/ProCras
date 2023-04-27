@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-
+import { useNavigate } from "react-router-dom";
 
 const Study = (props) => {
   const [stacks, setStacks] = useState([]);
@@ -9,10 +9,10 @@ const Study = (props) => {
   const [selectedStacks, setSelectedStacks] = useState([]);
   const [selectedDecks, setSelectedDecks] = useState([]);
   const [sessionDecks, setSessionDecks] = useState([]);
-  const [stackName, setStackName] = useState("");
+  const [deckName, setDeckName] = useState("");
   const [stackNameError, setStackNameError] = useState(null);
   const [studyDeck, setStudyDeck] = useState({})
-  //const for selected error, if there is nothing added to the list
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/stacks')
@@ -88,11 +88,30 @@ const Study = (props) => {
       }
     }
     let allSelectedCards = []
-    
-
-    //for loop to get all cards in each deck and push into a new "Study Deck"
-    //set "Study Deck" to state and navigate to new page to review cards
-    //In study session, send axios "put" to update "appearances and successes on each card in Study Deck"
+    for (let i=0; i<allSelectedDecks.length; i++) {
+      for (let j=0; j<allSelectedDecks[i].cards.length; j++) {
+        allSelectedCards.push(allSelectedDecks[i].cards[j])
+      }
+    }
+    for (let i=0; i<allSelectedCards.length; i++){
+      for (let j=0; j<cards.length; j++){
+        if (cards[j]._id == allSelectedCards[i]){
+          allSelectedCards[i]=cards[j]
+        }
+      }
+    }
+    console.log(allSelectedCards)
+    axios
+      .post("http://localhost:8000/api/decks", {
+        deckName,
+        cards: [...allSelectedCards],
+        studySession: true
+      })
+      .then(res => {
+        setStudyDeck(res.data);
+      })
+      .catch(err => console.error(err));
+    navigate('/flashzone', {state:{studyDeck:studyDeck}})
   }
 
   return (
@@ -135,8 +154,8 @@ const Study = (props) => {
             <div className="card my-shadow selection-list">
               <div className="card-header">
                 <div className="form-floating">
-                  <input type="text" id="stackName" name="stackName" className="form-control" placeholder="Session Name:" />
-                  <label htmlFor="stackName">Session Name:</label>
+                  <input type="text" id="deckName" name="deckName" className="form-control" placeholder="Session Name:" onChange = {(e)=> setDeckName(e.target.value)} />
+                  <label htmlFor="deckName">Session Name:</label>
                 </div>
               </div>
               <div className="card-body text-light">
