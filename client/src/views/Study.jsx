@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import Decks from "../components/decks"
-import Stacks from "../components/stacks"
-import AddStackModal from "../components/AddStackModal"
-import EditStackModal from "../components/EditStackModal"
-import DeleteWarningStackModal from "../components/DeleteWarningStackModal"
-import EditDeckModal from "../components/EditDeckModal"
-import DeleteWarningDeckModal from "../components/DeleteWarningDeckModal"
-import AddDeckModal from "../components/AddDeckModal"
+
 
 const Study = (props) => {
   const [stacks, setStacks] = useState([]);
