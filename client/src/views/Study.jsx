@@ -10,9 +10,12 @@ const Study = (props) => {
   const [selectedDecks, setSelectedDecks] = useState([]);
   const [sessionDecks, setSessionDecks] = useState([]);
   const [deckName, setDeckName] = useState("");
-  const [stackNameError, setStackNameError] = useState(null);
+  const [deckNameError, setDeckNameError] = useState(false);
   const [studyDeck, setStudyDeck] = useState({})
   const navigate = useNavigate()
+
+  let formIsValid = false;
+  formIsValid = deckNameError === null;
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/stacks')
@@ -40,8 +43,8 @@ const Study = (props) => {
     setSelectedStacks([...selectedStacks, stack]);
     if (stack.decks.length !== 0) {
       for (let i = 0; i < stack.decks.length; i++) {
-        console.log(stack.decks[i]);
-        console.log(document.getElementById(`${stack.decks[i]}`));
+        // console.log(stack.decks[i]);
+        // console.log(document.getElementById(`${stack.decks[i]}`));
         document.getElementById(`${stack.decks[i]}`).style.display = "none"
       }
     }
@@ -50,6 +53,8 @@ const Study = (props) => {
 
   const handleDeckSelect = (deck) => {
     setSelectedDecks([...selectedDecks, deck]);
+    document.getElementById(`${deck._id}`).style.display = "none"
+
   }
 
   const removeFromList = (e, item) => {
@@ -68,8 +73,21 @@ const Study = (props) => {
     }
   }
 
+  const handleDeckName = (e) => {
+    setDeckName(e.target.value) 
+    if (e.target.value < 1) {
+        setDeckNameError("Session name must not be blank.")
+    }
+    else {
+      setDeckNameError(null)
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (deckNameError === false) {
+      setDeckNameError("Session name must not be blank.")
+    }
     let allSelectedDecks = [...selectedDecks]
     for (let i=0; i<selectedStacks.length; i++){
       for (let j=0; j<selectedStacks[i].decks.length; j++){
@@ -100,7 +118,7 @@ const Study = (props) => {
         }
       }
     }
-    console.log(allSelectedCards)
+    // console.log(allSelectedCards)
     axios
       .post("http://localhost:8000/api/decks", {
         deckName,
@@ -111,7 +129,7 @@ const Study = (props) => {
         setStudyDeck(res.data);
       })
       .catch(err => console.error(err));
-    navigate('/flashzone', {state:{studyDeck:studyDeck}})
+    navigate('/flashzone', {state:{studyDeck: allSelectedCards, deckName: deckName}})
   }
 
   return (
@@ -154,8 +172,10 @@ const Study = (props) => {
             <div className="card my-shadow selection-list">
               <div className="card-header">
                 <div className="form-floating">
-                  <input type="text" id="deckName" name="deckName" className="form-control" placeholder="Session Name:" onChange = {(e)=> setDeckName(e.target.value)} />
-                  <label htmlFor="deckName">Session Name:</label>
+                  <input type="text" id="deckName" name="deckName" className="form-control" placeholder="Session Name:" onChange = {handleDeckName} />
+                  <label htmlFor="deckName">Please name your session:</label>
+                  {deckNameError ? (<p style={{ color: "tomato" }} className="mt-2">{deckNameError}</p>) : ("")}
+
                 </div>
               </div>
               <div className="card-body text-light">
@@ -179,7 +199,9 @@ const Study = (props) => {
                   })}
                 </div>
                 <div className="study-button">
-                  <button type="submit" className="btn my-shadow btn-create text-light">STUDY!</button>
+                  <button type="submit" 
+                  className={`btn my-shadow btn-create text-light ${formIsValid ? "" : "disabled"}`}
+                >STUDY!</button>
                 </div>
               </div>
             </div>

@@ -17,7 +17,7 @@ const Home = (props) => {
     <div>
       <h4 className="text-center mt-2">Stack/Deck</h4>
       <div className="m-auto mt-1">
-        <div className={`m-auto hover-deck-stack hover-effect`}>
+        <div className={`m-auto hover-deck-stack`}>
           <div className="hover-deck-stack-content">
             <h1 className="deck-stack-title">Hover over me!</h1>
           </div>
@@ -26,7 +26,7 @@ const Home = (props) => {
 
       <h4 className="text-center mt-3">Card</h4>
       <div className="mt-1">
-        <div className={`scene scene--flip-card hover-effect`}>
+        <div className={`scene scene--flip-card`}>
           <div className="flip-card" onClick={(e) => flipCard(e)}>
             <div className="flip-card__face flip-card__face--front">
               <h1>Hover over me and click me!</h1>

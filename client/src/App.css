@@ -69,6 +69,7 @@ body {
   color: #343a40;
 }
 
+/* Home */
 .title-card {
   background-color: transparent;
   perspective: 1000px;
@@ -162,7 +163,7 @@ body {
   transform: scale(0.9) translateZ(10px);
 }
 
-/* Test Card on Home */
+/* Decks and Stacks */
 .deck-stack {
   width: 250px;
   height: 125px;
@@ -188,63 +189,8 @@ body {
   visibility: hidden !important;
 }
 
-/* Flipping animation */
-.scene {
-  width: 450px;
-  height: 250px;
-  border: 1px solid #ccc;
-  perspective: 600px;
-  margin: auto;
-}
 
-.flip-card {
-  width: 100%;
-  height: 100%;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  position: relative;
-}
-
-.flip-card.is-flipped {
-  transform: rotateX(180deg);
-}
-
-.flip-card__face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  color: white;
-  line-height: 200px;
-  text-align: center;
-  font-weight: bold;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 6px;
-  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2));
-  padding: 20px;
-  display: grid;
-  align-content: center;
-  pointer-events: none;
-}
-
-.flip-card__face--front {
-  background: linear-gradient(to right, #36d1dc, #5b86e5);
-  pointer-events: none;
-}
-
-.flip-card__face h1 {
-  position: relative;
-  transform: scale(0.9) translateZ(100px);
-  pointer-events: none;
-}
-
-.flip-card__face--back {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  transform: rotateX(180deg);
-  pointer-events: none;
-}
-
+/* MyCards */
 .horizontal-line {
   height: 1px;
   background-color: rgba(0,0,0,.2);
@@ -405,5 +351,77 @@ body {
 
 #stackName {
   background-color: rgb(230, 230, 230);
+}
 
+/* Study View Page (flashzone) */
+/* Flipping animation */
+.scene {
+  width: 450px;
+  height: 250px;
+  border: 1px solid #ccc;
+  perspective: 600px;
+  margin: auto;
+  border: 1px solid rgba(0,0,0,.0001);
+}
+
+.flip-card {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-card.is-flipped {
+  transform: rotateX(180deg);
+}
+
+.flip-card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 200px;
+  text-align: center;
+  font-weight: bold;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2));
+  padding: 20px;
+  display: grid;
+  align-content: center;
+  pointer-events: none;
+}
+
+.flip-card__face--front {
+  background-image: url("https://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg");
+  background-size: 100%;
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
+    grayscale();
+  pointer-events: none;
+  
+}
+
+.flip-card__face h1 {
+  position: relative;
+  font-size: 3rem;
+  pointer-events: none;
+}
+
+.flip-card__face--back {
+  background-image: url("https://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg");
+  background-size: 100%;
+  filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
+    grayscale();
+  transform: rotateX(180deg);
+  pointer-events: none;
+}
+
+.flashzone-background {
+  /* position: absolute; */
+  /* background-image: url("https://wallpaperaccess.com/full/521120.jpg"); */
+  background-size: 100%;
+  width: 100vw;
+  height: 100vh;
 }
