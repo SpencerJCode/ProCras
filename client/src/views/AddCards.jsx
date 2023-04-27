@@ -1,13 +1,18 @@
+import {useLocation} from 'react-router-dom';
 import React, { useState } from 'react'
 import axios from 'axios';
 
 function AddCards(props) {
-  const { deck } = props;
+  // const { deck } = props;
+  const location = useLocation();
+  const deck = location.state.deck
   const [card, setCard] = useState({});
   const [cardFront, setCardFront] = useState("");
   const [cardBack, setCardBack] = useState("");
   const [cardFrontError, setCardFrontError] = useState(null)
   const [cardBackError, setCardBackError] = useState(null)
+
+  console.log("Deck on AddCards page:", deck);
 
   let formIsValid = false;
   formIsValid = cardFrontError === null && cardBackError === null;
@@ -77,7 +82,7 @@ function AddCards(props) {
     <div className='d-flex m-auto col-8 justify-content-around add-card-bg my-shadow'>
       <div className="left-side col-4 mt-3">
         <div className="card my-shadow cards-list-container text-light">
-          <div className="card-header">{deck.deckName} - {deck.cards.length} Cards</div>
+          <div className="card-header">{deck.deckName} {deck.cards.length === null? <span style={{color: "lightgray"}}>- 0 Cards</span> : <span style={{color: "lightgray"}}>- {deck.cards.length} Cards</span>}</div>
           <div className="cards-list card-body">
             {deck.cards.map((card, i) => {
               return <p onClick={() => handleSetCard(card)}>{card.cardFront}</p>

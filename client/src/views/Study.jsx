@@ -138,7 +138,7 @@ const Study = (props) => {
                     )
                   })}
                 </div>
-                <div>
+                <div className="study-button">
                   <button className="btn my-shadow btn-create text-light">STUDY!</button>
                 </div>
               </div>

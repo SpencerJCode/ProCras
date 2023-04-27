@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const AddDeckModal = ({ showAddDeck, setShowAddDeck, setStacksLoaded, stackId, setFilteredDecks, filteredDecks, setDeck }) => {
+const AddDeckModal = ({ showAddDeck, setShowAddDeck, setStacksLoaded, stackId, setFilteredDecks, filteredDecks, setDeck, deck }) => {
   const [deckName, setDeckName] = useState("");
   const navigate = useNavigate();
 
@@ -18,19 +18,35 @@ const AddDeckModal = ({ showAddDeck, setShowAddDeck, setStacksLoaded, stackId, s
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let createdDeck;
+    let decksInStack;
     axios
       .post("http://localhost:8000/api/decks", {
         deckName,
         stack: stackId
       })
       .then((res) => {
-        console.log(res)
         setDeck(res.data);
-        // let updatedDecks = [...filteredDecks, res.data]
-        // setFilteredDecks([...updatedDecks])
-        navigate('/addcards')
+        createdDeck = res.data
+        // console.log("This is the createdDeck data: ", createdDeck);
+        return axios.get("http://localhost:8000/api/stacks/" + stackId)
+          .then((res) => {
+            // console.log("This is the decks array: " , res.data.decks);
+            decksInStack = res.data.decks
+            // console.log("Deck: ", createdDeck);
+            return axios.put("http://localhost:8000/api/stacks/" + stackId, {
+              decks: [...decksInStack, createdDeck]
+            })
+              .then((res) => {
+                console.log("Deck in put request: " , res.data);
+                navigate('/addcards', {state:{deck: createdDeck}})
+              })
+              .catch((err) => console.log("put error: ", err))
+          })
+          .catch((err) => console.log("get error :", err))
       })
       .catch((err) => console.log(err));
+
     setStacksLoaded(false)
   };
 

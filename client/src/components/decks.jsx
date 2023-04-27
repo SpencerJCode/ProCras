@@ -47,8 +47,8 @@ const Decks = (props) => {
     }
 
     const navigateToAddCards = (deck) => {
-        setDeck(deck)
-        navigate('/addcards')
+        // setDeck(deck)
+        navigate('/addcards', {state:{deck: deck}})
     }
 
     return (filteredDecksLoaded &&

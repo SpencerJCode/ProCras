@@ -392,3 +392,18 @@ body {
   min-height: 200px;
   background-color: rgb(106, 132, 158);
 }
+
+.study-button {
+  position: absolute;
+  left: 260px;
+  top: 270px;
+}
+
+.study-button button {
+  font-size: 1.7rem;
+}
+
+#stackName {
+  background-color: rgb(230, 230, 230);
+
+}
