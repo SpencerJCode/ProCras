@@ -157,12 +157,12 @@ const Flashzone = (props) => {
                     <div className="scene scene--flip-card">
                         <div className="flip-card" onClick={(e) => flipCard(e)} id="flipped-card">
                             <div className="flip-card__face flip-card__face--front">
-                                <h1>{cardFront}</h1>
+                                {cardFront.length > 16? <h2>{cardFront}</h2>: <h1>{cardFront}</h1>}
                                 <h6 id="hint">{cardBack.split(' ').length > 1 ? `The answer is ${cardBack.split(' ').length} words long.` :  `The answer is ${cardBack.length} characters long.`}</h6>
                             </div>
                             <div className="flip-card__face flip-card__face--back">
                                 <div className="smaller-card-front"><h4>{cardFront}</h4></div>
-                                <h1>{cardBack}</h1>
+                                {cardBack.length > 16? <h2>{cardBack}</h2>: <h1>{cardBack}</h1>}
                             </div>
                         </div>
                     </div>

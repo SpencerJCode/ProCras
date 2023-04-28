@@ -398,8 +398,8 @@ body {
 /* Study View Page (flashzone) */
 /* Flipping animation */
 .scene {
-  width: 490px;
-  height: 280px;
+  min-width: 490px;
+  min-height: 280px;
   border: 1px solid #ccc;
   perspective: 600px;
   margin: auto;
@@ -448,6 +448,12 @@ body {
 .flip-card__face h1 {
   position: relative;
   font-size: 3.5rem;
+  pointer-events: none;
+}
+
+.flip-card__face h2 {
+  position: relative;
+  font-size: 3rem;
   pointer-events: none;
 }
 
