@@ -69,6 +69,30 @@ body {
   color: #343a40;
 }
 
+.card a  {
+  color: rgb(201, 216, 231);
+  font-size: 1.2rem;
+  margin-left: 20px;
+  transition: .3s;
+}
+
+.card a:hover  {
+  color: rgb(149, 161, 172);
+}
+
+.procras-blue {
+  background-color: rgb(106, 132, 158);
+}
+
+.procras-blue-2 {
+  /* background-color: rgb(90, 112, 134); */
+  background-color: rgba(0,0,0,.2);
+}
+
+.procras-gray {
+  background-color: rgb(156, 168, 179);
+}
+
 .contributors-photo {
   border-radius: 10px;
   width: 170px;

@@ -21,17 +21,17 @@ const Home = (props) => {
           </div>
         </div>
       </div>
-      <div className="card mt-4 col-9 m-auto">
-        <h3 className="text-center text-secondary card-header">A Flash-Card App Created by:</h3>
+      <div className="card mt-4 col-9 m-auto procras-blue my-shadow text-light">
+        <h3 className="text-center card-header">A Flash-Card App Created by:</h3>
         <div className="card-body">
           <div className="contact-info d-flex justify-content-around gap-2">
-            <div className="left card col-4">
-              <h4 className="card-header">Bill Davies</h4>
-              <div className="card-body"></div>
+            <div className="left card col-4 procras-blue-2 my-shadow">
+              <h4 className="card-header text-center">Bill Davies</h4>
+              <div className="card-body m-auto"></div>
             </div>
-            <div className="middle card col-4">
-              <h4 className="card-header">Spencer Johnson</h4>
-              <div className="card-body">
+            <div className="middle card col-4 procras-blue-2 my-shadow">
+              <h4 className="card-header text-center">Spencer Johnson</h4>
+              <div className="card-body m-auto">
                 <div className="d-flex gap-2">
                   <img src="https://avatars.githubusercontent.com/u/123844048?v=4" alt="Spencer Photo" className="contributors-photo" />
                   <div className="contact-links d-flex flex-column">
@@ -42,9 +42,9 @@ const Home = (props) => {
                 </div>
               </div>
             </div>
-            <div className="right card col-4">
-              <h4 className="card-header">Evan Wiorek</h4>
-              <div className="card-body">
+            <div className="right card col-4 procras-blue-2 my-shadow">
+              <h4 className="card-header text-center">Evan Wiorek</h4>
+              <div className="card-body m-auto">
                 <div className="d-flex gap-2">
                   <img src="https://avatars.githubusercontent.com/u/124269000?v=4" alt="Evan Photo" className="contributors-photo" />
                   <div className="contact-links d-flex flex-column">
