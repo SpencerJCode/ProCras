@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const AddDeckModal = ({ showAddDeck, setShowAddDeck, setStacksLoaded, stackId, setFilteredDecks, filteredDecks, setDeck, deck }) => {
+const AddDeckModal = ({ showAddDeck, setShowAddDeck, setStacksLoaded, stackId, setFilteredDecks, filteredDecks, setDeck, deck, stackName }) => {
   const [deckName, setDeckName] = useState("");
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const AddDeckModal = ({ showAddDeck, setShowAddDeck, setStacksLoaded, stackId, s
   return (
     <Modal show={showAddDeck} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Create Deck</Modal.Title>
+        <Modal.Title>Create Deck for {stackName} Stack</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>

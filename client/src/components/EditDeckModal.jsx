@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId, setDecksLoaded, stackId, highlightedStack, filteredDecksLoaded, setFilteredDecksLoaded, filteredDecks, setFilteredDecks}) => {
+const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId, setDecksLoaded, stackId, highlightedStack, filteredDecksLoaded, setFilteredDecksLoaded, filteredDecks, setFilteredDecks, stackName}) => {
   const [deckName, setDeckName] = useState("");
 
   const handleClose = () => {
@@ -36,7 +36,7 @@ const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId,
   return (
     <Modal show={showEditDeck} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Deck</Modal.Title>
+        <Modal.Title>Edit Deck for {stackName} Stack</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>

@@ -12,6 +12,8 @@ function AddCards(props) {
   const [cardFrontError, setCardFrontError] = useState(null)
   const [cardBackError, setCardBackError] = useState(null)
 
+  document.querySelector(".navbar-body").style.display = "block"
+
   let formIsValid = false;
   formIsValid = cardFrontError === null && cardBackError === null;
 
@@ -49,7 +51,17 @@ function AddCards(props) {
         cardFront,
         cardBack
       })
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res)
+          let updatedCards = [...cards]
+          for (let i = 0; i<updatedCards.length; i++) {
+            if (updatedCards[i]._id == res.data._id) {
+              updatedCards[i] = res.data
+            }
+          }
+          setCards([...updatedCards]);
+          clearForm()
+        })
         .catch((err) => console.log(err))
     }
     else {
@@ -68,9 +80,7 @@ function AddCards(props) {
     // let newThing = `<p onClick={() => handleSetCard({${card}})} id={${card._id}}>{${card.cardFront}}</p>`
     // document.querySelector(".cards-list").innerHTML = newThing + document.querySelector(".cards-list").innerHTML
   
-    setCard("");
-    setCardFront("");
-    setCardBack("");
+    clearForm()
   }
 
   const clearForm = () => {
@@ -87,8 +97,14 @@ function AddCards(props) {
     axios.delete("http://localhost:8000/api/cards/" + card._id)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+    axios.put("http://localhost:8000/api/decks/" + deck._id , {
+      cards: cards.filter((cardInDeck) => cardInDeck._id !== card._id)
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    setCards(cards.filter((cardInDeck) => cardInDeck._id !== card._id))
     clearForm()
-    document.getElementById(card._id).remove()
+    // document.getElementById(card._id).remove()
   }
 
   return (

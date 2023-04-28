@@ -73,8 +73,8 @@ body {
 .title-card {
   background-color: transparent;
   perspective: 1000px;
-  width: 400px;
-  height: 230px;
+  width: 600px;
+  height: 350px;
   filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
     grayscale();
 }
@@ -289,25 +289,24 @@ body {
   border-radius: 10px !important;
 }
 
+.stacks-header {
+  background-color: rgb(106, 132, 158);
+}
+
 #stacksHeading {
   --bs-accordion-active-bg: rgb(106, 132, 158);
 }
 
-#decksHeading {
-  --bs-accordion-active-bg: rgb(156, 168, 179);
-}
-
-.accordion-body p {
-  cursor: pointer;
-}
-
-.accordion-body {
-  max-height: 280px;
-  overflow: auto;
-}
-
 #stacksBody {
   background-color: rgb(106, 132, 158);
+}
+
+.decks-header {
+  background-color: rgb(156, 168, 179);
+}
+
+#decksHeading {
+  --bs-accordion-active-bg: rgb(156, 168, 179);
 }
 
 #decksBody {
@@ -315,12 +314,26 @@ body {
   border-radius: 0px 0px 5px 5px;
 }
 
-.stacks-header {
+.previous-header {
   background-color: rgb(106, 132, 158);
 }
 
-.decks-header {
+#previousHeading {
+  --bs-accordion-active-bg: rgb(106, 132, 158);
+}
+
+#previousBody {
   background-color: rgb(156, 168, 179);
+  border-radius: 0px 0px 5px 5px;
+}
+
+.accordion-body p {
+  cursor: pointer;
+}
+
+.accordion-body {
+  max-height: 300px;
+  overflow: auto;
 }
 
 .accordion-button {
@@ -329,7 +342,7 @@ body {
 }
 
 .selection-list {
-  height: 350px;
+  height: 415px;
   overflow: auto;
   background-color: rgb(106, 132, 158);
 }
@@ -341,8 +354,8 @@ body {
 
 .study-button {
   position: absolute;
-  left: 260px;
-  top: 270px;
+  left: 40%;
+  top: 350px;
 }
 
 .study-button button {
@@ -356,8 +369,8 @@ body {
 /* Study View Page (flashzone) */
 /* Flipping animation */
 .scene {
-  width: 450px;
-  height: 250px;
+  width: 490px;
+  height: 280px;
   border: 1px solid #ccc;
   perspective: 600px;
   margin: auto;
@@ -405,7 +418,7 @@ body {
 
 .flip-card__face h1 {
   position: relative;
-  font-size: 3rem;
+  font-size: 3.5rem;
   pointer-events: none;
 }
 
@@ -418,10 +431,51 @@ body {
   pointer-events: none;
 }
 
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow:  0 0 10px rgba(0,0,0,1) inset, 0 0 20px rgba(0,0,0,1) inset, 0 0 20px rgba(0,0,0,1) inset, 0 0 200px rgba(0,0,0,1) inset ;
+  pointer-events: none;
+}
+
 .flashzone-background {
-  /* position: absolute; */
-  /* background-image: url("https://wallpaperaccess.com/full/521120.jpg"); */
+  position: absolute;
+  background-image: url("https://wallpaperaccess.com/full/521120.jpg");
   background-size: 100%;
   width: 100vw;
   height: 100vh;
+  filter: blur(5px) brightness(.6) grayscale(.4);
+  z-index: -1;
+  top: 0;
+}
+
+.hint-button {
+  font-size: 2.5rem;
+  padding: 0px 15px;
+}
+
+.study-container {
+  /* transform: scale(1.2); */
+  margin-top: 40px !important;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, .3);
+  backdrop-filter: blur(15px);
+}
+
+.deckname-and-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 50px !important;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, .3);
+  backdrop-filter: blur(15px);
+}
+
+#gotIt, #missedIt {
+  font-size: 1.5rem;
 }
