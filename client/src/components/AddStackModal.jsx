@@ -5,13 +5,24 @@ import axios from "axios";
 
 const AddStackModal = ({ showAddStack, setShowAddStack, setStacksLoaded }) => {
   const [stackName, setStackName] = useState("");
+  const [error, setError] = useState(false)
+
+  let formIsValid = false;
+  formIsValid = error === null;
 
   const handleClose = () => {
     setShowAddStack(false);
+    setError(null)
   };
 
   const handleStackName = (e) => {
     setStackName(e.target.value);
+    if (e.target.value < 1) {
+      setError("Stack name cannot be blank.")
+    }
+    else {
+      setError(null)
+    }
   };
 
   const handleSubmit = (e) => {
@@ -42,12 +53,13 @@ const AddStackModal = ({ showAddStack, setShowAddStack, setStacksLoaded }) => {
               onChange={handleStackName}
             />
             <label htmlFor="stackName">Name:</label>
+            {error ? (<p style={{ color: "tomato" }} className="mt-2">{error}</p>) : ("")}
           </div>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button type="submit" variant="primary" onClick={handleClose}>
+            <Button type="submit" onClick={handleClose} className={`btn btn-create text-light my-shadow ${formIsValid ? "" : "disabled"}`}>
               Create Stack
             </Button>
           </Modal.Footer>

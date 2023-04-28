@@ -30,7 +30,7 @@ const Decks = (props) => {
             nonstateFilteredDecks[i].cards = filteredCardsArr
             filteredCardsArr = []
         }
-        console.log(nonstateFilteredDecks);
+        // console.log(nonstateFilteredDecks);
         setFilteredDecks([...nonstateFilteredDecks]);
         setFilteredDecksLoaded(true);
         

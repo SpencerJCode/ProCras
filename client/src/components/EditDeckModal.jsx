@@ -5,13 +5,24 @@ import axios from "axios";
 
 const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId, setDecksLoaded, stackId, highlightedStack, filteredDecksLoaded, setFilteredDecksLoaded, filteredDecks, setFilteredDecks, stackName}) => {
   const [deckName, setDeckName] = useState("");
+  const [error, setError] = useState(false)
+
+  let formIsValid = false;
+  formIsValid = error === null;
 
   const handleClose = () => {
     setShowEditDeck(false);
+    setError(null);
   };
 
   const handleDeckName = (e) => {
     setDeckName(e.target.value);
+    if (e.target.value < 1) {
+      setError("Deck name cannot be blank.")
+    }
+    else {
+      setError(null)
+    }
   };
 
   const handleSubmit = (e) => {
@@ -43,19 +54,20 @@ const EditDeckModal = ({ showEditDeck, setShowEditDeck, setStacksLoaded, deckId,
           <div className="form-floating">
             <input
               type="text"
-              placeholder="Name:"
+              placeholder="Deck Name:"
               className="form-control"
               id="deckName"
               name="deckName"
               onChange={handleDeckName}
             />
-            <label htmlFor="deckName">Name:</label>
+            <label htmlFor="deckName">Deck Name:</label>
+            {error ? (<p style={{ color: "tomato" }} className="mt-2">{error}</p>) : ("")}
           </div>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button type="submit" variant="primary" onClick={handleClose}>
+            <Button type="submit" onClick={handleClose} className={`btn btn-create text-light my-shadow ${formIsValid ? "" : "disabled"}`}>
               Edit Deck
             </Button>
           </Modal.Footer>

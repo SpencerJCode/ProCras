@@ -66,8 +66,8 @@ const Flashzone = (props) => {
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
         let updateDeck = [...randomDeck ]
-        console.log("Logging 'updateDeck'")
-        console.log(updateDeck)
+        // console.log("Logging 'updateDeck'")
+        // console.log(updateDeck)
         updateDeck[currentIdx].appearances = updateDeck[currentIdx].appearances + 1;
         setRandomDeck([ ...updateDeck ])
         let newIdx = currentIdx
@@ -115,7 +115,7 @@ const Flashzone = (props) => {
         setRandomDeck(randomDeck)
         if (loaded == false) {
             document.getElementById("hint").style.display="none";
-            console.log(randomDeck[currentIdx].appearances)
+            // console.log(randomDeck[currentIdx].appearances)
             setAppearances(randomDeck[currentIdx].appearances);
             setSuccesses(randomDeck[currentIdx].successes);
             setCardFront(randomDeck[currentIdx].cardFront);
@@ -138,7 +138,7 @@ const Flashzone = (props) => {
             [array[currentIndex], array[randomIndex]] = [
                 array[randomIndex], array[currentIndex]];
         }
-        console.log(array);
+        // console.log(array);
         return array;
     }
 

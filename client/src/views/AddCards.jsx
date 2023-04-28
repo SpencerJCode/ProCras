@@ -52,7 +52,7 @@ function AddCards(props) {
         cardBack
       })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           let updatedCards = [...cards]
           for (let i = 0; i<updatedCards.length; i++) {
             if (updatedCards[i]._id == res.data._id) {
@@ -65,7 +65,7 @@ function AddCards(props) {
         .catch((err) => console.log(err))
     }
     else {
-      console.log(deck._id);
+      // console.log(deck._id);
       axios.post('http://localhost:8000/api/cards', {
         cardFront,
         cardBack,

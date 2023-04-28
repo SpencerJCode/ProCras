@@ -46,7 +46,7 @@ const Study = (props) => {
         myCards = res.data;
       })
       .catch(err => console.log(err));
-    console.log(myDecks)
+    // console.log(myDecks)
   }, []);
 
 
@@ -54,7 +54,7 @@ const Study = (props) => {
   const handleStackSelect = (stack) => {
     // console.log(stack);
     clickSound.play()
-    console.log(stack);
+    // console.log(stack);
     setSelectedStacks([...selectedStacks, stack]);
     if (stack.decks.length !== 0) {
       for (let i = 0; i < stack.decks.length; i++) {
@@ -108,7 +108,7 @@ const Study = (props) => {
         if (decks[i].studySession == true) {
           for (let j = 0; j < decks[i].cards.length; j++) {
             for (let k = 0; k < cards.length; k++) {
-              console.log(decks[i].cards[j])
+              // console.log(decks[i].cards[j])
               // console.log(cards[k]._id)
               if (decks[i].cards[j] == cards[k]._id) {
                 myDecks[i].cards[j] = cards[k]
