@@ -36,8 +36,8 @@ const Home = (props) => {
         </div>
         <img src={HomeImg} alt="Successful Student" className="homeImage my-shadow" />
       </div>
-      <div className="card mt-4 col-9 m-auto procras-blue my-shadow text-light">
-        <h3 className="text-center card-header">A Flash-Card App Created by:</h3>
+      <div className="card mt-4 col-9 m-auto procras-blue my-shadow text-light mb-5">
+        <h3 className="text-center card-header">Created by:</h3>
         <div className="card-body">
           <div className="contact-info d-flex justify-content-around gap-2">
             <div className="left card col-4 procras-blue-2 my-shadow">
