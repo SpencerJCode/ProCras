@@ -24,9 +24,9 @@ const Stacks = (props) => {
     for (let i=0; i< allStackElements.length; i++) {
       allStackElements[i].style.opacity = ".5"
     }
-    console.log(stackId);
+    // console.log(stackId);
     if (document.getElementById(stackId) !== null) {
-      console.log(document.getElementById(stackId));
+      // console.log(document.getElementById(stackId));
       document.getElementById(stackId).style.opacity = "1"
     }
   }, [stackId]);

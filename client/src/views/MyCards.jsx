@@ -70,6 +70,7 @@ const MyCards = (props) => {
     clickDeckStack.play()
     document.getElementById("add-to-stack").classList.remove("disabled")
     setFilteredDecks(decks.filter((deck) => deck.stack === id))
+    setFilteredDecksLoaded(false);
     setDecksLoaded(true)
     setStackId(id);
     setStackName(stackName)

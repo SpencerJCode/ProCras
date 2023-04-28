@@ -69,12 +69,17 @@ body {
   color: #343a40;
 }
 
+.contributors-photo {
+  border-radius: 10px;
+  width: 170px;
+}
+
 /* Home */
 .title-card {
   background-color: transparent;
   perspective: 1000px;
-  width: 600px;
-  height: 350px;
+  width: 500px;
+  height: 280px;
   filter: drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.2)) brightness(106%)
     grayscale();
 }
