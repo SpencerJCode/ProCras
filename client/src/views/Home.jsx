@@ -27,7 +27,14 @@ const Home = (props) => {
           <div className="contact-info d-flex justify-content-around gap-2">
             <div className="left card col-4 procras-blue-2 my-shadow">
               <h4 className="card-header text-center">Bill Davies</h4>
-              <div className="card-body m-auto"></div>
+              <div className="card-body m-auto">
+              <div className="contact-links d-flex flex-column">
+                    <div className="d-flex gap-2">
+                      <img src="https://avatars.githubusercontent.com/u/38267653?v=4" alt="Bill Photo" className="contributors-photo" />
+                      <a href="https://github.com/WDavies3" target="_blank">GitHub</a>
+                    </div>
+                  </div>
+              </div>
             </div>
             <div className="middle card col-4 procras-blue-2 my-shadow">
               <h4 className="card-header text-center">Spencer Johnson</h4>
