@@ -380,7 +380,7 @@ body {
 .flip-card {
   width: 100%;
   height: 100%;
-  transition: transform 1s;
+  transition: transform .3s;
   transform-style: preserve-3d;
   cursor: pointer;
   position: relative;
