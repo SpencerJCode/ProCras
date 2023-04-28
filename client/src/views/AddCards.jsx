@@ -3,16 +3,14 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 function AddCards(props) {
-  // const { deck } = props;
   const location = useLocation();
   const deck = location.state.deck
+  const [cards, setCards] = useState(deck.cards);
   const [card, setCard] = useState({});
   const [cardFront, setCardFront] = useState("");
   const [cardBack, setCardBack] = useState("");
   const [cardFrontError, setCardFrontError] = useState(null)
   const [cardBackError, setCardBackError] = useState(null)
-
-  console.log("Deck on AddCards page:", deck);
 
   let formIsValid = false;
   formIsValid = cardFrontError === null && cardBackError === null;
@@ -61,9 +59,15 @@ function AddCards(props) {
         cardBack,
         deck: deck._id
       })
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          setCards([...cards, res.data])
+        })
         .catch((err) => console.log(err))
     }
+    // let newThing = `<p onClick={() => handleSetCard({${card}})} id={${card._id}}>{${card.cardFront}}</p>`
+    // document.querySelector(".cards-list").innerHTML = newThing + document.querySelector(".cards-list").innerHTML
+  
     setCard("");
     setCardFront("");
     setCardBack("");
@@ -78,14 +82,23 @@ function AddCards(props) {
     document.getElementById("success-rate").style.display = "none"
   }
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    axios.delete("http://localhost:8000/api/cards/" + card._id)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    clearForm()
+    document.getElementById(card._id).remove()
+  }
+
   return (
     <div className='d-flex m-auto col-8 justify-content-around add-card-bg my-shadow'>
       <div className="left-side col-4 mt-3">
         <div className="card my-shadow cards-list-container text-light">
-          <div className="card-header">{deck.deckName} {deck.cards.length === null? <span style={{color: "lightgray"}}>- 0 Cards</span> : <span style={{color: "lightgray"}}>- {deck.cards.length} Cards</span>}</div>
+          <div className="card-header">{deck.deckName} {cards.length === null? <span style={{color: "lightgray"}}>- 0 Cards</span> : <span style={{color: "lightgray"}}>- {cards.length} Cards</span>}</div>
           <div className="cards-list card-body">
-            {deck.cards.map((card, i) => {
-              return <p onClick={() => handleSetCard(card)}>{card.cardFront}</p>
+            {cards.map((card, i) => {
+              return <p onClick={() => handleSetCard(card)} id={card._id}>{card.cardFront}</p>
             })}
             <button className="btn btn-create text-light my-shadow" onClick={clearForm} >+ Add New Card</button>
           </div>
@@ -115,7 +128,7 @@ function AddCards(props) {
             </div>
             <div className="buttons d-flex flex-column gap-4">
               <button type='submit' className={`btn btn-create text-light my-shadow ${formIsValid ? "" : "disabled"}`}>Save</button>
-              <button className='btn btn-delete text-light my-shadow'>Delete</button>
+              <button className='btn btn-delete text-light my-shadow' onClick = {(e) => handleDelete(e)}>Delete</button>
             </div>
           </div>
         </div>

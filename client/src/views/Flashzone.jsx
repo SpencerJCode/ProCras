@@ -8,7 +8,6 @@ const Flashzone = (props) => {
     const location = useLocation();
     const studyDeck = location.state.studyDeck;
     const deckName = location.state.deckName
-    // const [currentCard, setCurrentCard] = useState({});
     const [appearances, setAppearances] = useState();
     const [successes, setSuccesses] = useState();
     const [cardFront, setCardFront] = useState("");
@@ -19,20 +18,20 @@ const Flashzone = (props) => {
     const [loaded, setLoaded] = useState(false)
 
     const handleCorrect = (cardId) => {
-        setAppearances((prev) => prev + 1);
-        setSuccesses((prev) => prev + 1);
+        let apps = appearances + 1
+        let succ = successes + 1
         axios.put("http://localhost:8000/api/cards/" + cardId, {
-            appearances,
-            successes
+            appearances: apps,
+            successes: succ
         })
-            .then((res) => console.log(res))
+            .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
-        let updateDeck = { ...randomDeck }
-        updateDeck[currentIdx].appearances++;
-        updateDeck[currentIdx].successes++;
-        // console.log(updateDeck[currentIdx]);
-        // console.log(updateDeck[currentIdx].successes);
-        setRandomDeck({ ...updateDeck })
+        let updateDeck = [...randomDeck ]
+        console.log("Logging 'updateDeck'")
+        console.log(updateDeck)
+        updateDeck[currentIdx].appearances = updateDeck[currentIdx].appearances + 1;
+        updateDeck[currentIdx].successes = updateDeck[currentIdx].successes + 1;
+        setRandomDeck([ ...updateDeck ])
         if (currentIdx == randomDeck.length - 1) {
             setCurrentIdx(0);
         }
@@ -44,29 +43,42 @@ const Flashzone = (props) => {
         setCardFront(randomDeck[currentIdx].cardFront);
         setCardBack(randomDeck[currentIdx].cardBack);
         setCardId(randomDeck[currentIdx]._id)
+        document.getElementById("hint").style.display="none";
     }
 
-    // const handleIncorrect = (cardId) => {
-    //     axios.put("http://localhost:8000/api/cards/" + cardId, {
-    //         appearances: appearances++,
-    //     })
-    //     let updateDeck = {...randomDeck}
-    //     updateDeck[currentIdx].appearances++;
-    //     setRandomDeck({...updateDeck})
-    //     if (currentIdx == randomDeck.length-1) {
-    //         setCurrentIdx(0);
-    //     }
-    //     else {
-    //         setCurrentIdx(currentIdx++);
-    //     }
-    //     setCurrentCard({
-    //         cardFront: randomDeck[currentIdx].cardFront,
-    //         cardBack: randomDeck[currentIdx].cardBack,
-    //         _id: randomDeck[currentIdx]._id,
-    //         appearances: randomDeck[currentIdx].appearances,
-    //         successes: randomDeck[currentIdx].successes
-    //     })
-    // }
+    const handleIncorrect = (cardId) => {
+        let apps = appearances + 1
+        axios.put("http://localhost:8000/api/cards/" + cardId, {
+            appearances: apps
+        })
+            .then((res) => console.log(res.data))
+            .catch((err) => console.log(err))
+        let updateDeck = [...randomDeck ]
+        console.log("Logging 'updateDeck'")
+        console.log(updateDeck)
+        updateDeck[currentIdx].appearances = updateDeck[currentIdx].appearances + 1;
+        setRandomDeck([ ...updateDeck ])
+        if (currentIdx == randomDeck.length - 1) {
+            setCurrentIdx(0);
+        }
+        else {
+            setCurrentIdx((prev) => prev + 1);
+        }
+        setAppearances(randomDeck[currentIdx].appearances);
+        setSuccesses(randomDeck[currentIdx].successes);
+        setCardFront(randomDeck[currentIdx].cardFront);
+        setCardBack(randomDeck[currentIdx].cardBack);
+        setCardId(randomDeck[currentIdx]._id);
+        document.getElementById("hint").style.display="none";
+    }
+
+    const handleEndSession = () => {
+        navigate('/study')
+    }
+
+    const handleHint = () => {
+        document.getElementById("hint").style.display="block";
+    }
 
     const flipCard = (e) => {
         e.target.classList.toggle("is-flipped");
@@ -75,9 +87,10 @@ const Flashzone = (props) => {
     useEffect(() => {
         let randomDeck = shuffle(studyDeck)
         // console.log(randomDeck);
-        setRandomDeck([...randomDeck])
-        let cardVar1 = { cardFront: randomDeck[currentIdx].cardFront }
+        setRandomDeck(randomDeck)
         if (loaded == false) {
+            document.getElementById("hint").style.display="none";
+            console.log(randomDeck[currentIdx].appearances)
             setAppearances(randomDeck[currentIdx].appearances);
             setSuccesses(randomDeck[currentIdx].successes);
             setCardFront(randomDeck[currentIdx].cardFront);
@@ -86,8 +99,6 @@ const Flashzone = (props) => {
             setLoaded(true);
         }
     }, [])
-
-    // console.log(currentCard.appearances, currentCard.successes);
 
 
     const shuffle = (array) => {
@@ -109,13 +120,14 @@ const Flashzone = (props) => {
         <div className="flashzone-background">
             <div className="top">
                 {deckName}
-                <button className="btn btn-delete my-shadow" >End Session</button>
+                <button className="btn btn-delete my-shadow" onClick = {() => handleEndSession()}>End Session</button>
             </div>
             <div className="left-side">
                 <div className="scene scene--flip-card">
                     <div className="flip-card" onClick={(e) => flipCard(e)}>
                         <div className="flip-card__face flip-card__face--front">
                             <h1>{cardFront}</h1>
+                            <h6 id="hint">{cardBack.split(' ').length > 1 ? `The answer is ${cardBack.split(' ').length} words long.` :  `The answer is ${cardBack.length} characters long.`}</h6>
                         </div>
                         <div className="flip-card__face flip-card__face--back">
                             <div className="smaller-card-front"><h4>{cardFront}</h4></div>
@@ -123,12 +135,12 @@ const Flashzone = (props) => {
                         </div>
                     </div>
                 </div>
-                <button className="btn btn-create my-shadow">Hint</button>
+                <button className="btn btn-create my-shadow" onClick={() => handleHint()}>Hint</button>
             </div>
             <div className="right-side">
                 <div className="buttons">
                     <button className="btn btn-create my-shadow" onClick={() => handleCorrect(cardId)}>I got it!</button>
-                    {/* <button className="btn btn-delete my-shadow" onClick={() => handleIncorrect(_id)}>I missed it :(!</button> */}
+                    <button className="btn btn-delete my-shadow" onClick={() => handleIncorrect(cardId)}>I missed it :(</button>
                 </div>
             </div>
         </div>

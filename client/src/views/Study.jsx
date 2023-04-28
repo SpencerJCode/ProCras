@@ -12,12 +12,15 @@ const Study = (props) => {
   const [deckName, setDeckName] = useState("");
   const [deckNameError, setDeckNameError] = useState(false);
   const [studyDeck, setStudyDeck] = useState({})
+  const [loaded, setLoaded] = useState(false)
   const navigate = useNavigate()
 
   let formIsValid = false;
   formIsValid = deckNameError === null;
 
   useEffect(() => {
+    let myDecks = []
+    let myCards = []
     axios.get('http://localhost:8000/api/stacks')
       .then(res => {
         setStacks(res.data);
@@ -27,16 +30,20 @@ const Study = (props) => {
     axios.get('http://localhost:8000/api/decks')
       .then(res => {
         setDecks(res.data);
-        setSessionDecks(res.data.filter((deck) => deck.studySession !== false));
+        myDecks = [...res.data];
       })
       .catch(err => console.log(err));
 
     axios.get('http://localhost:8000/api/cards')
       .then(res => {
         setCards(res.data);
+        myCards = res.data;
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+    console.log(myDecks)
   }, []);
+
+
 
   const handleStackSelect = (stack) => {
     // console.log(stack);
@@ -80,6 +87,27 @@ const Study = (props) => {
     }
     else {
       setDeckNameError(null)
+    }
+  }
+
+  const handleViewPreviousSessions = () => {
+    if (loaded == false) {
+      let myDecks = [...decks]
+      for (let i=0; i<decks.length; i++){
+        if (decks[i].studySession == true) {
+          for (let j=0; j<decks[i].cards.length; j++) {
+            for (let k=0; k<cards.length; k++){
+              console.log(decks[i].cards[j])
+              // console.log(cards[k]._id)
+              if (decks[i].cards[j] == cards[k]._id) {
+                myDecks[i].cards[j]=cards[k]
+              }
+            }
+          }
+        }
+      }
+      setSessionDecks(myDecks.filter((deck, i) => (deck.studySession == true)));
+      setLoaded(true)
     }
   }
 
@@ -130,6 +158,14 @@ const Study = (props) => {
       })
       .catch(err => console.error(err));
     navigate('/flashzone', {state:{studyDeck: allSelectedCards, deckName: deckName}})
+  }
+
+  const removeSessionDeck = (Id) => {
+    let updatedDecks = decks.filter((deck) => deck._id != Id);
+    setSessionDecks([...updatedDecks])
+    axios.delete('http://localhost:8000/api/decks/' + Id)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
   }
 
   return (
@@ -210,22 +246,22 @@ const Study = (props) => {
       </div>
       <div className="bottom col-10 m-auto mt-3">
         <div className="card previous-list-container text-light my-shadow">
-          <div className="card-header">Previous Sessions</div>
+          <div className="card-header" onClick = {() => handleViewPreviousSessions()}>Previous Sessions</div>
           <div className="card-body">
-            {sessionDecks.map((deck, i) => {
+            {loaded && sessionDecks.map((deck, i) => {
               let appearancesSum = 0;
-              for (i = 0; i < deck.cards.length; i++) {
+              for (let i = 0; i < deck.cards.length; i++) {
                 appearancesSum += parseInt(deck.cards[i].appearances)
               }
               let successesSum = 0;
-              for (i = 0; i < deck.cards.length; i++) {
+              for (let i = 0; i < deck.cards.length; i++) {
                 successesSum += parseInt(deck.cards[i].successes)
               }
               let successRate = Math.floor((successesSum / appearancesSum) * 100)
               return <div className="d-flex align-items-center justify-content-between m-2">
                 <p>{deck.deckName}</p>
-                <p>{successRate}</p>
-                <button className="btn my-shadow btn-delete text-light" onClick={(e) => removeFromList(e, deck)}>Remove Session</button>
+                <p>Success rate: {successRate}%</p>
+                <button className="btn my-shadow btn-delete text-light" onClick={(e) => removeSessionDeck(deck._id)}>Remove Session</button>
               </div>
             })}
           </div>
