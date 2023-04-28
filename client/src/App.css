@@ -20,13 +20,13 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(82,102,122);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(66, 82, 98);
 }
 
 .btn-delete {
@@ -337,7 +337,7 @@ body {
 }
 
 .accordion-body {
-  max-height: 300px;
+  max-height: 240px;
   overflow: auto;
 }
 
@@ -347,7 +347,7 @@ body {
 }
 
 .selection-list {
-  height: 415px;
+  height: 380px;
   overflow: auto;
   background-color: rgb(106, 132, 158);
 }
@@ -360,7 +360,7 @@ body {
 .study-button {
   position: absolute;
   left: 40%;
-  top: 350px;
+  top: 315px;
 }
 
 .study-button button {

@@ -270,7 +270,7 @@ const Study = (props) => {
           </form>
         </div>
       </div>
-      <div className="bottom col-10 m-auto mt-3">
+      <div className="bottom col-7 m-auto mt-3">
         <div className="accordion" id="accordionExample2">
           <div className="accordion-item text-light">
             <h2 className="accordion-header" id="previousHeading">
@@ -290,9 +290,13 @@ const Study = (props) => {
                     successesSum += parseInt(deck.cards[i].successes)
                   }
                   let successRate = Math.floor((successesSum / appearancesSum) * 100)
-                  return <div className="d-flex align-items-center justify-content-between m-2">
-                    <p>{deck.deckName}</p>
-                    <p>Success rate: {successRate}%</p>
+                  return <div className="d-flex align-items-center m-2">
+                    <div className="col-4">
+                      <p>{deck.deckName}</p>
+                    </div>
+                    <div className="col-4">
+                      <p>{isNaN(successRate)? "Not Yet Studied" : "Success rate: " + successRate + "%"}</p>
+                    </div>
                     <div className="buttons d-flex gap-3">
                       <button className="btn my-shadow btn-create text-light" onClick={(e) => navTryAgain(deck)}>Try Again</button>
                       <button className="btn my-shadow btn-delete text-light" onClick={(e) => removeSessionDeck(deck._id)}>Remove Session</button>
