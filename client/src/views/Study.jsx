@@ -22,14 +22,15 @@ const Study = (props) => {
   let formIsValid = false;
   formIsValid = deckNameError === null;
 
-  const awaitLoadPage = () => {
-    document.querySelector(".navbar-body").style.display = "block"
-    document.querySelector(".fade-animation").style.display = "none"
-  }
 
-  setTimeout(awaitLoadPage, 500)
 
   useEffect(() => {
+    const awaitLoadPage = () => {
+      document.querySelector(".navbar-body").style.display = "block"
+      document.querySelector(".fade-animation").style.display = "none"
+    }
+  
+    setTimeout(awaitLoadPage, 500)
 
     let myDecks = []
     let myCards = []
@@ -130,6 +131,7 @@ const Study = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    document.querySelector(".fade-animation").style.display = "block"
     if (deckNameError === false) {
       setDeckNameError("Session name must not be blank.")
     }
@@ -174,13 +176,13 @@ const Study = (props) => {
         setStudyDeck(res.data);
       })
       .catch(err => console.error(err));
-    document.querySelector(".fade-animation").style.display = "block"
-    const transition = () => {
-      document.querySelector(".navbar-body").style.display = "none"
-      studyLoading.play();
-      navigate('/flashzone', { state: { studyDeck: allSelectedCards, deckName: deckName } })
-    }
-    setTimeout(transition, 1000)
+
+      const transition = () => {
+        document.querySelector(".navbar-body").style.display = "none"
+        studyLoading.play();
+        navigate('/flashzone', { state: { studyDeck: allSelectedCards, deckName: deckName } })
+      }
+      setTimeout(transition, 1000)
 
   }
 
