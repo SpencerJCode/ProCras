@@ -22,8 +22,13 @@ const Study = (props) => {
   let formIsValid = false;
   formIsValid = deckNameError === null;
 
+  const awaitLoadPage = () => {
+    document.querySelector(".navbar-body").style.display = "block"
+  }
+
+  setTimeout(awaitLoadPage, 500)
+
   useEffect(() => {
-  document.querySelector(".navbar-body").style.display = "block"
     
     let myDecks = []
     let myCards = []

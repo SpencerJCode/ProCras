@@ -12,7 +12,11 @@ function AddCards(props) {
   const [cardFrontError, setCardFrontError] = useState(null)
   const [cardBackError, setCardBackError] = useState(null)
 
-  document.querySelector(".navbar-body").style.display = "block"
+  const awaitLoadPage = () => {
+    document.querySelector(".navbar-body").style.display = "block"
+  }
+
+  setTimeout(awaitLoadPage, 500)
 
   let formIsValid = false;
   formIsValid = cardFrontError === null && cardBackError === null;

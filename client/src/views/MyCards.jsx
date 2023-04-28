@@ -12,7 +12,6 @@ import sound2 from "../assets/sounds/save-button2.mp3"
 import sound1 from "../assets/sounds/study-loading.mp3"
 import sound3 from "../assets/sounds/click-on-deck.mp3"
 
-
 const MyCards = (props) => {
   const {deck, setDeck} = props;
   const [stacks, setStacks] = useState([]);
@@ -37,9 +36,14 @@ const MyCards = (props) => {
   const studyLoading = new Audio(sound1)
   const clickDeckStack = new Audio(sound3)
 
+  const awaitLoadPage = () => {
+    document.querySelector(".navbar-body").style.display = "block"
+  }
+
+  setTimeout(awaitLoadPage, 500)
+
   useEffect(() => {
-  document.querySelector(".navbar-body").style.display = "block"
-    
+   
     if (stacksLoaded === false || decksLoaded === false) {
       // studyLoading.play()
       axios.get('http://localhost:8000/api/stacks')
