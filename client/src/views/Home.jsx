@@ -6,7 +6,13 @@ const Home = (props) => {
     let hoverEffect = new Hover3D(".hover-effect");
   };
 
-  document.querySelector(".navbar-body").style.display = "block"
+  const awaitLoadPage = () => {
+    document.querySelector(".navbar-body").style.display = "block"
+  }
+
+  setTimeout(awaitLoadPage, 500)
+
+  
 
   setTimeout(createHoverEffect, 1000);
 
