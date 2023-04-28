@@ -245,16 +245,22 @@ const Study = (props) => {
         <div className="right-side col-6">
           <form onSubmit={handleSubmit}>
             <div className="card my-shadow selection-list">
-              <div className="card-header">
-                <div className="form-floating">
-                  <input type="text" id="deckName" name="deckName" className="form-control" placeholder="Session Name:" onChange={handleDeckName} />
-                  <label htmlFor="deckName">Please name your session:</label>
-                  {deckNameError ? (<p style={{ color: "tomato" }} className="mt-2">{deckNameError}</p>) : ("")}
-
+              <div className="card-header session-list-header">
+                <div className="d-flex gap-3 align-items-center justify-content-between">
+                  <div className="form-floating col-9">
+                    <input type="text" id="deckName" name="deckName" className="form-control" placeholder="Session Name:" onChange={handleDeckName} />
+                    <label htmlFor="deckName">Please name your session:</label>
+                    {deckNameError ? (<p style={{ color: "tomato" }} className="mt-2">{deckNameError}</p>) : ("")}
+                  </div>
+                  <div className="study-button">
+                    <button type="submit"
+                      className={`btn my-shadow btn-create text-light ${formIsValid ? "" : "disabled"}`}
+                    >STUDY!</button>
+                  </div>
                 </div>
+                <h6 className="text-center mt-2 mb-1 text-light">Repeated cards will not be included in study session.</h6>
               </div>
-              <div className="card-body text-light">
-                <h6 className="text-center">Repeated cards will not be included in study session.</h6>
+              <div className="card-body text-light list-in-list">
                 <div>
                   {selectedStacks.map((stack, i) => {
                     return (
@@ -272,11 +278,6 @@ const Study = (props) => {
                       </div>
                     )
                   })}
-                </div>
-                <div className="study-button">
-                  <button type="submit"
-                    className={`btn my-shadow btn-create text-light ${formIsValid ? "" : "disabled"}`}
-                  >STUDY!</button>
                 </div>
               </div>
             </div>

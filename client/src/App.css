@@ -378,19 +378,16 @@ body {
 
 .selection-list {
   height: 380px;
-  overflow: auto;
   background-color: rgb(106, 132, 158);
+}
+
+.list-in-list {
+  overflow: auto;
 }
 
 .previous-list-container {
   min-height: 200px;
   background-color: rgb(106, 132, 158);
-}
-
-.study-button {
-  position: absolute;
-  left: 40%;
-  top: 315px;
 }
 
 .study-button button {
