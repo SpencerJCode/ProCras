@@ -24,12 +24,13 @@ const Study = (props) => {
 
   const awaitLoadPage = () => {
     document.querySelector(".navbar-body").style.display = "block"
+    document.querySelector(".fade-animation").style.display = "none"
   }
 
   setTimeout(awaitLoadPage, 500)
 
   useEffect(() => {
-    
+
     let myDecks = []
     let myCards = []
     axios.get('http://localhost:8000/api/stacks')
@@ -76,7 +77,7 @@ const Study = (props) => {
     clickSound.play()
     setSelectedDecks([...selectedDecks, deck]);
     document.getElementById(`${deck._id}`).style.display = "none"
-    
+
   }
 
   const removeFromList = (e, item) => {
@@ -129,7 +130,6 @@ const Study = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    studyLoading.play();
     if (deckNameError === false) {
       setDeckNameError("Session name must not be blank.")
     }
@@ -174,11 +174,14 @@ const Study = (props) => {
         setStudyDeck(res.data);
       })
       .catch(err => console.error(err));
+    document.querySelector(".fade-animation").style.display = "block"
     const transition = () => {
+      document.querySelector(".navbar-body").style.display = "none"
+      studyLoading.play();
       navigate('/flashzone', { state: { studyDeck: allSelectedCards, deckName: deckName } })
     }
-
     setTimeout(transition, 1000)
+
   }
 
   const removeSessionDeck = (Id) => {
@@ -190,11 +193,14 @@ const Study = (props) => {
   }
 
   const navTryAgain = (deck) => {
-    studyLoading.play();
+    document.querySelector(".fade-animation").style.display = "block"
     const transition = () => {
-      navigate('/flashzone', {state:{studyDeck: deck.cards, deckName: deck.deckName}})
+      document.querySelector(".navbar-body").style.display = "none"
+      studyLoading.play();
+      navigate('/flashzone', { state: { studyDeck: deck.cards, deckName: deck.deckName } })
     }
     setTimeout(transition, 1000)
+
   }
 
   return (
@@ -300,7 +306,7 @@ const Study = (props) => {
                       <p>{deck.deckName}</p>
                     </div>
                     <div className="col-4">
-                      <p>{isNaN(successRate)? "Not Yet Studied" : "Success rate: " + successRate + "%"}</p>
+                      <p>{isNaN(successRate) ? "Not Yet Studied" : "Success rate: " + successRate + "%"}</p>
                     </div>
                     <div className="buttons d-flex gap-3">
                       <button className="btn my-shadow btn-create text-light" onClick={(e) => navTryAgain(deck)}>Try Again</button>

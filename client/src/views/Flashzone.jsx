@@ -21,6 +21,12 @@ const Flashzone = (props) => {
     const flipCardSound = new Audio(sound4)
     const clickSound = new Audio(sound2)
 
+    const awaitLoadPage = () => {
+        document.querySelector(".fade-animation").style.display = "none"
+    }
+
+    setTimeout(awaitLoadPage, 500)
+
     const handleCorrect = (cardId) => {
         clickSound.play()
         let apps = appearances + 1
@@ -31,14 +37,14 @@ const Flashzone = (props) => {
         })
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
-        let updateDeck = [...randomDeck ]
+        let updateDeck = [...randomDeck]
         updateDeck[currentIdx].appearances = updateDeck[currentIdx].appearances + 1;
         updateDeck[currentIdx].successes = updateDeck[currentIdx].successes + 1;
-        setRandomDeck([ ...updateDeck ])
+        setRandomDeck([...updateDeck])
         let newIdx = currentIdx
         if (currentIdx == randomDeck.length - 1) {
             setCurrentIdx(0);
-            newIdx=0;
+            newIdx = 0;
         }
         else {
             setCurrentIdx((prev) => prev + 1);
@@ -49,7 +55,7 @@ const Flashzone = (props) => {
         setCardFront(randomDeck[newIdx].cardFront);
         setCardBack(randomDeck[newIdx].cardBack);
         setCardId(randomDeck[newIdx]._id)
-        document.getElementById("hint").style.display="none";
+        document.getElementById("hint").style.display = "none";
         document.querySelector(".flip-card").classList.toggle("is-flipped");
         document.querySelector(".flip-card__face--back").style.display = "none"
         document.getElementById("gotIt").classList.add("disabled");
@@ -65,15 +71,15 @@ const Flashzone = (props) => {
         })
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err))
-        let updateDeck = [...randomDeck ]
+        let updateDeck = [...randomDeck]
         // console.log("Logging 'updateDeck'")
         // console.log(updateDeck)
         updateDeck[currentIdx].appearances = updateDeck[currentIdx].appearances + 1;
-        setRandomDeck([ ...updateDeck ])
+        setRandomDeck([...updateDeck])
         let newIdx = currentIdx
         if (currentIdx == randomDeck.length - 1) {
             setCurrentIdx(0);
-            newIdx=0;
+            newIdx = 0;
         }
         else {
             setCurrentIdx((prev) => prev + 1);
@@ -84,7 +90,7 @@ const Flashzone = (props) => {
         setCardFront(randomDeck[newIdx].cardFront);
         setCardBack(randomDeck[newIdx].cardBack);
         setCardId(randomDeck[newIdx]._id)
-        document.getElementById("hint").style.display="none";
+        document.getElementById("hint").style.display = "none";
         document.querySelector(".flip-card").classList.toggle("is-flipped");
         document.querySelector(".flip-card__face--back").style.display = "none"
         document.getElementById("gotIt").classList.add("disabled");
@@ -93,11 +99,16 @@ const Flashzone = (props) => {
     }
 
     const handleEndSession = () => {
-        navigate('/study')
+        document.querySelector(".fade-animation").style.display = "block"
+        const transition = () => {
+            document.querySelector(".navbar-body").style.display = "block"
+            navigate('/study')
+        }
+        setTimeout(transition, 1000)
     }
 
     const handleHint = () => {
-        document.getElementById("hint").style.display="block";
+        document.getElementById("hint").style.display = "block";
     }
 
     const flipCard = (e) => {
@@ -109,12 +120,13 @@ const Flashzone = (props) => {
     };
 
     useEffect(() => {
+
         let randomDeck = shuffle(studyDeck)
         // console.log(randomDeck);
         document.querySelector(".navbar-body").style.display = "none"
         setRandomDeck(randomDeck)
         if (loaded == false) {
-            document.getElementById("hint").style.display="none";
+            document.getElementById("hint").style.display = "none";
             // console.log(randomDeck[currentIdx].appearances)
             setAppearances(randomDeck[currentIdx].appearances);
             setSuccesses(randomDeck[currentIdx].successes);
@@ -148,7 +160,7 @@ const Flashzone = (props) => {
                 <div className="d-flex align-items-center">
                     <div className="d-flex align-items-center m-auto gap-3 mt-3 deckname-and-button">
                         <h1 className="text-light">{deckName}</h1>
-                        <button className="btn btn-delete my-shadow m-auto text-light" onClick = {() => handleEndSession()}>End Session</button>
+                        <button className="btn btn-delete my-shadow m-auto text-light" onClick={() => handleEndSession()}>End Session</button>
                     </div>
                 </div>
             </div>
@@ -157,12 +169,12 @@ const Flashzone = (props) => {
                     <div className="scene scene--flip-card">
                         <div className="flip-card" onClick={(e) => flipCard(e)} id="flipped-card">
                             <div className="flip-card__face flip-card__face--front">
-                                {cardFront.length > 16? <h2>{cardFront}</h2>: <h1>{cardFront}</h1>}
-                                <h6 id="hint">{cardBack.split(' ').length > 1 ? `The answer is ${cardBack.split(' ').length} words long.` :  `The answer is ${cardBack.length} characters long.`}</h6>
+                                {cardFront.length > 16 ? <h2>{cardFront}</h2> : <h1>{cardFront}</h1>}
+                                <h6 id="hint">{cardBack.split(' ').length > 1 ? `The answer is ${cardBack.split(' ').length} words long.` : `The answer is ${cardBack.length} characters long.`}</h6>
                             </div>
                             <div className="flip-card__face flip-card__face--back">
                                 <div className="smaller-card-front"><h4>{cardFront}</h4></div>
-                                {cardBack.length > 16? <h2>{cardBack}</h2>: <h1>{cardBack}</h1>}
+                                {cardBack.length > 16 ? <h2>{cardBack}</h2> : <h1>{cardBack}</h1>}
                             </div>
                         </div>
                     </div>

@@ -11,9 +11,11 @@ import { useState } from "react";
 
 function App() {
   const [deck, setDeck] = useState("");
+
   return (
     <>
       <div>
+      <div className="fade-animation"></div>
         <Navbar />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
