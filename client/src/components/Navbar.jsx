@@ -22,14 +22,14 @@ const Navbar = (props) => {
               <h1 className="site-title">ProCras</h1>
             </div>
           </Link>
-          <div className="links d-flex col-5 justify-content-around holder">
-            <Link to="/Browse">
+          <div className="links d-flex col-4 justify-content-around holder">
+            {/* <Link to="/Browse">
               <div className="hover-card-link">
                 <div className="hover-card-link-content">
                   <h4>Browse</h4>
                 </div>
               </div>
-            </Link>
+            </Link> */}
             <Link to="/MyCards">
               <div className="hover-card-link">
                 <div className="hover-card-link-content">
