@@ -1,4 +1,5 @@
 import Hover3D from "../assets/js/hover3D";
+import HomeImg from "../assets/images/happyStudent.png"
 
 const Home = (props) => {
   const createHoverEffect = () => {
@@ -21,6 +22,20 @@ const Home = (props) => {
           </div>
         </div>
       </div>
+      <div className="d-flex col-7 justify-content-around m-auto align-items-center mt-3">
+        <div className="card  my-shadow">
+          <div className="card-header procras-blue text-light">
+            <h2 className="text-center">Why Use ProCras?</h2>
+          </div>
+          <div className="card-body">
+            <h3><emph>EASY</emph> to build and manage</h3>
+            <h3><emph>FAST</emph> and responsive page loading</h3>
+            <h3><emph>SLEEK</emph> and comfortable design</h3>
+            <h3>And last of all, <emph>FREE</emph> to use!</h3>
+          </div>
+        </div>
+        <img src={HomeImg} alt="Successful Student" className="homeImage my-shadow" />
+      </div>
       <div className="card mt-4 col-9 m-auto procras-blue my-shadow text-light">
         <h3 className="text-center card-header">A Flash-Card App Created by:</h3>
         <div className="card-body">
@@ -28,12 +43,12 @@ const Home = (props) => {
             <div className="left card col-4 procras-blue-2 my-shadow">
               <h4 className="card-header text-center">Bill Davies</h4>
               <div className="card-body m-auto">
-              <div className="contact-links d-flex flex-column">
-                    <div className="d-flex gap-2">
-                      <img src="https://avatars.githubusercontent.com/u/38267653?v=4" alt="Bill Photo" className="contributors-photo" />
-                      <a href="https://github.com/WDavies3" target="_blank">GitHub</a>
-                    </div>
+                <div className="contact-links d-flex flex-column">
+                  <div className="d-flex gap-2">
+                    <img src="https://avatars.githubusercontent.com/u/38267653?v=4" alt="Bill Photo" className="contributors-photo" />
+                    <a href="https://github.com/WDavies3" target="_blank">GitHub</a>
                   </div>
+                </div>
               </div>
             </div>
             <div className="middle card col-4 procras-blue-2 my-shadow">
