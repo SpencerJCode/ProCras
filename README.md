@@ -21,7 +21,7 @@ value. The latter is divided by the former to display the success rate for that 
 session deck.
 
 # Demo
-procras-demo.mp4
+(https://github.com/SpencerJCode/ProCras/blob/main/procras-demo.mp4)
 
 # Future Features
 1) Login/Registration. Will allow users to make their own stacks, decks, and cards, without worrying about other users being able to manipulate or edit their data.
