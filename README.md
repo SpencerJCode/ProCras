@@ -3,10 +3,10 @@ Repository for an online flash-card app.
 
 ProCras is an online flash-card application produced by Evan Wiorek, Spencer Johnson, and William Davies. It is short for "procrastination", which everyone does before taking tests.
 
-#Tools
+# Tools
 ProCras was built in an agile environment using GIT and Trello. It's a React project that includes MongoDB, Express, and Bootstrap. 
 
-#Functionality
+# Functionality
 Cards contain front and back information, as well as the ID of the deck of cards it belongs in, that card's number of appearances, and the number of successful 
 recognitions it has. A deck has an array of card IDs, a Stack ID, a Deck Name, and whether or not the deck is a unique session deck. A session deck is a chunk of data created
 just when a user is studying. These persist until a user decides to remove them. Finally, a stack contains an array of deck IDs and a stack name.
@@ -20,10 +20,10 @@ the successfully recognize the card. Clicking either button increments the value
 value. The latter is divided by the former to display the success rate for that card, and the sums of both across the entire session creates the success rate for that 
 session deck.
 
-#Demo
+# Demo
 procras-demo.mp4
 
-#Future Features
+# Future Features
 1) Login/Registration. Will allow users to make their own stacks, decks, and cards, without worrying about other users being able to manipulate or edit their data.
 2) Global data. Users will be able to set their stacks and decks as "public" so that they are searchable and useable by anyone else in the world.
 3) Dark  Mode / Light Mode
